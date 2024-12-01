@@ -1,0 +1,81 @@
+{
+  "name": "itatsi/mrzparser",
+  "type": "library",
+  "description": "A PHP package for MRZ parsing.",
+  "keywords": [
+      "mrz",
+      "mrz-parser"
+  ],
+  "license": "BSD-3-Clause",
+  "autoload": {
+    "psr-4": {
+      "Itatsi\\MrzParser\\": "src/",
+      "Itatsi\\MrzParser\\Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Alexander Herrmann",
+      "email": "alexander.herrmann@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.65",
+    "infection/infection": "^0.29.8",
+    "phpstan/phpstan": "^2.0",
+    "phpunit/phpunit": "^10.5 || ^11.0",
+    "shipmonk/composer-dependency-analyser": "^1.8"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "infection/extension-installer": true
+    }
+  },
+  "scripts": {
+    "test": [
+      "@style:php-cs-check",
+      "@test:infection",
+      "@style:phpstan",
+      "@check:dependency"
+    ],
+    "test:test": [
+      "@test:unit"
+    ],
+    "test:unit": [
+      "@phpunit --testsuite=Unit"
+    ],
+    "test:coverage": [
+      "@phpunit --coverage-text --coverage-html=var/phpunit/coverage"
+    ],
+    "test:infection": [
+      "@infection"
+    ],
+    "style:php-cs-check": [
+      "@php-cs-check"
+    ],
+    "style:phpstan": [
+      "@phpstan"
+    ],
+    "style:check": [
+      "@style:php-cs-check",
+      "@style:phpstan"
+    ],
+    "style:fix": [
+      "@php-cs-fix"
+    ],
+    "check:dependency": [
+      "@composer-dependency-analyser"
+    ],
+    "phpunit": "./vendor/bin/phpunit",
+    "php-cs-check": "./vendor/bin/php-cs-fixer check --diff",
+    "php-cs-fix": "./vendor/bin/php-cs-fixer fix",
+    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon",
+    "composer-dependency-analyser": "./vendor/bin/composer-dependency-analyser",
+    "infection": "php -d xdebug.mode=coverage ./vendor/bin/infection -n -jmax --min-msi=100 --min-covered-msi=100 --show-mutations"
+  }
+}
