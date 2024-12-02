@@ -1,0 +1,24 @@
+stages:
+  - test
+
+test:phpunit:
+  cache:
+    key:
+      files:
+        - composer.lock
+    paths:
+      - vendor/
+  image: sineverba/php8xc:latest
+  stage: test 
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/phpunit --do-not-cache-result --log-junit phpunit-report.xml --coverage-cobertura phpunit-coverage.xml --coverage-text --colors=never
+  artifacts:
+    when: always
+    reports:
+      junit: phpunit-report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: phpunit-coverage.xml
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
