@@ -371,8 +371,7 @@ $config->setFinder($finder)
         'whitespace_after_comma_in_array' => true,
     ]);
 
-// $config->setCacheFile(__DIR__ . '/.php-cs-fixer.cache/' . json_decode((string) @file_get_contents('composer.json'), true)["extra"]["branch-alias"]["dev-main"] ?? 'unknown');
-$config->setUsingCache(false);
+$config->setCacheFile(__DIR__ . '/build/cache/.php-cs-fixer.cache');
 $config->setParallelConfig(ParallelConfigFactory::detect());
 
 return $config;

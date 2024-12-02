@@ -22,3 +22,21 @@ test:phpunit:
         coverage_format: cobertura
         path: phpunit-coverage.xml
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+
+test:infection:
+  cache:
+    key:
+      files:
+        - composer.lock
+    paths:
+      - vendor/
+  image: sineverba/php8xc:latest
+  stage: test 
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/infection -n -jmax
+  artifacts:
+    when: always
+    reports:
+      codequality: build/infection/gitlab-coverage.json
