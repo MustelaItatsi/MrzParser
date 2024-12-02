@@ -57,3 +57,21 @@ test:phpstan:
     when: always
     reports:
       codequality: phpstan.json
+
+test:composer-dependency-analyser:
+  cache:
+    key:
+      files:
+        - composer.lock
+    paths:
+      - vendor/
+  image: sineverba/php8xc:latest
+  stage: test 
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/composer-dependency-analyser --format junit > composer-dependency.json
+  artifacts:
+    when: always
+    reports:
+      junit: composer-dependency.json
