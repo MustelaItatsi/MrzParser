@@ -6,8 +6,8 @@
     executionOrder="random"
     failOnWarning="true"
     failOnRisky="true"
-    cacheResult="false"
->
+    cacheDirectory="build/cache/"
+    >
     <php>
         <env name="COLUMNS" value="100" force="true" />
     </php>

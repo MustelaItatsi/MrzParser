@@ -7,5 +7,16 @@
     },
     "mutators": {
         "@default": true
+    },
+    "logs": {
+        "stryker": {
+            "report": "main"
+        },
+        "text": "build/infection/infection.log",
+        "summary": "build/infection/summary.log",
+        "json": "build/infection/infection-log.json",
+        "perMutator": "build/infection/per-mutator.md",
+        "gitlab": "build/infection/gitlab-coverage.json",
+        "html": "build/infection/infection.html"
     }
 }
