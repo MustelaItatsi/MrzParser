@@ -1,8 +1,10 @@
 # MrzParser
+
+[![Pipeline Status](https://gitlab.com/Itatsi/MrzParser/badges/main/pipeline.svg)](https://gitlab.com/Itatsi/MrzParser/-/commits/main)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/itatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/itatsi/mrzparser)
-[![Tests](https://img.shields.io/github/actions/workflow/status/itatsi/mrzparser/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/itatsi/mrzparser/actions/workflows/run-tests.yml)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2FMrzParser)](https://dashboard.stryker-mutator.io/reports/MrzParser)
 [![Total Downloads](https://img.shields.io/packagist/dt/itatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/itatsi/mrzparser)
+[![Coverage](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)
+[![Mutation testing badge](https://img.shields.io/endpoint?logo=null&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FItatsi%2FMrzParser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/Itatsi/MrzParser/main)
 
 A PHP package for MRZ parsing
 
