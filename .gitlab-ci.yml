@@ -40,3 +40,20 @@ test:infection:
     when: always
     reports:
       codequality: build/infection/gitlab-coverage.json
+
+test:phpstan:
+  cache:
+    key:
+      files:
+        - composer.lock
+    paths:
+      - vendor/
+  image: 
+    name: ghcr.io/phpstan/phpstan:2-php8.3
+    entrypoint: [""]
+  script:
+    - phpstan analyse --no-progress --error-format gitlab > phpstan.json
+  artifacts:
+    when: always
+    reports:
+      codequality: phpstan.json
