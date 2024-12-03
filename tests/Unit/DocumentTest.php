@@ -120,9 +120,9 @@ class DocumentTest extends TestCase
     {
         $document = ParserFacade::parseMrz($mrz);
 
-        foreach ($expected as $key => $value) {
-            $this->assertEquals($document->{'get' . ucfirst($key)}(), $value);
+        foreach ($expected as $expectedKey => $expectedValue) {
+            $this->assertEquals($expectedValue, $document->{'get' . ucfirst($expectedKey)}());
         }
-        $this->assertEqualsCanonicalizing($document->toArray(), $expected);
+        $this->assertEqualsCanonicalizing($expected, $document->toArray());
     }
 }
