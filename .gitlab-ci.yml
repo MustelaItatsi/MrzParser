@@ -1,16 +1,32 @@
-.definitions: 
-  cache: &composer-cache
-    key:
-      files:
-        - composer.lock
-    paths:
-      - vendor/
+.composer-cache: &composer-cache
+  key:
+    files:
+      - composer.lock
+  paths:
+    - vendor/
+  policy: pull
 
 stages:
+  - prepare
   - test
 
+prepare:composer-cache:
+  stage: prepare
+  dependencies: []
+  cache: 
+    - <<: *composer-cache
+      policy: pull-push
+  image: sineverba/php8xc:latest
+  script:
+    - composer install
+  only:
+    changes:
+     - composer.lock
+
 test:phpunit:
+  stage: test
   cache: *composer-cache
+  dependencies: []
   image: sineverba/php8xc:latest
   before_script:
     - composer install
@@ -26,7 +42,10 @@ test:phpunit:
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
 
 test:infection:
+  stage: test
   cache: *composer-cache
+  dependencies: []
+  needs: ["test:phpunit"]
   image: sineverba/php8xc:latest
   before_script:
     - composer install
@@ -38,19 +57,23 @@ test:infection:
       codequality: build/infection/gitlab-coverage.json
 
 test:phpstan:
+  stage: test
   cache: *composer-cache
-  image: 
-    name: ghcr.io/phpstan/phpstan:2-php8.3
-    entrypoint: [""]
+  dependencies: []
+  image: sineverba/php8xc:latest
+  before_script:
+    - composer install
   script:
-    - phpstan analyse --no-progress --error-format gitlab > phpstan.json
+    - vendor/bin/phpstan analyse --no-progress --error-format gitlab > phpstan.json
   artifacts:
     when: always
     reports:
       codequality: phpstan.json
 
 test:composer-dependency-analyser:
+  stage: test
   cache: *composer-cache
+  dependencies: []
   image: sineverba/php8xc:latest
   before_script:
     - composer install
@@ -62,7 +85,9 @@ test:composer-dependency-analyser:
       junit: composer-dependency.json
 
 test:php-cs-fixer:
+  stage: test
   cache: *composer-cache
+  dependencies: []
   image: sineverba/php8xc:latest
   before_script:
     - composer install
