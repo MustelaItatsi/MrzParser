@@ -2,8 +2,11 @@ parameters:
     level: 7
     paths:
         - src
-
+        - tests
     treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        # ignore test data provider array shape definition
+        - '#Itatsi\\MrzParser\\Tests\\Unit.* no value type specified in iterable type#'
 
 includes:
 	- phar://phpstan.phar/conf/bleedingEdge.neon
