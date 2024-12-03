@@ -1,15 +1,17 @@
-stages:
-  - test
-
-test:phpunit:
-  cache:
+.definitions: 
+  cache: &composer-cache
     key:
       files:
         - composer.lock
     paths:
       - vendor/
+
+stages:
+  - test
+
+test:phpunit:
+  cache: *composer-cache
   image: sineverba/php8xc:latest
-  stage: test 
   before_script:
     - composer install
   script:
@@ -24,14 +26,8 @@ test:phpunit:
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
 
 test:infection:
-  cache:
-    key:
-      files:
-        - composer.lock
-    paths:
-      - vendor/
+  cache: *composer-cache
   image: sineverba/php8xc:latest
-  stage: test 
   before_script:
     - composer install
   script:
@@ -42,12 +38,7 @@ test:infection:
       codequality: build/infection/gitlab-coverage.json
 
 test:phpstan:
-  cache:
-    key:
-      files:
-        - composer.lock
-    paths:
-      - vendor/
+  cache: *composer-cache
   image: 
     name: ghcr.io/phpstan/phpstan:2-php8.3
     entrypoint: [""]
@@ -59,14 +50,8 @@ test:phpstan:
       codequality: phpstan.json
 
 test:composer-dependency-analyser:
-  cache:
-    key:
-      files:
-        - composer.lock
-    paths:
-      - vendor/
+  cache: *composer-cache
   image: sineverba/php8xc:latest
-  stage: test 
   before_script:
     - composer install
   script:
@@ -75,3 +60,14 @@ test:composer-dependency-analyser:
     when: always
     reports:
       junit: composer-dependency.json
+
+test:php-cs-fixer:
+  cache: *composer-cache
+  image: sineverba/php8xc:latest
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/php-cs-fixer fix -v --dry-run --format=gitlab --using-cache=no src/ > gl-cs-fixer.json || exit 0
+  artifacts:
+    reports:
+      codequality: gl-cs-fixer.json
