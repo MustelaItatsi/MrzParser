@@ -96,3 +96,6 @@ test:php-cs-fixer:
   artifacts:
     reports:
       codequality: gl-cs-fixer.json
+
+include:
+  - component: $CI_SERVER_FQDN/components/sast/sast@2.1.0
