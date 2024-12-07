@@ -12,6 +12,7 @@ namespace Itatsi\MrzParser\Tests\Unit;
 use function ucfirst;
 use Itatsi\MrzParser\Enums\MrzType;
 use Itatsi\MrzParser\Facades\ParserFacade;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -121,8 +122,8 @@ class DocumentTest extends TestCase
         $document = ParserFacade::parseMrz($mrz);
 
         foreach ($expected as $expectedKey => $expectedValue) {
-            $this->assertEquals($expectedValue, $document->{'get' . ucfirst($expectedKey)}());
+            Assert::assertEquals($expectedValue, $document->{'get' . ucfirst($expectedKey)}());
         }
-        $this->assertEqualsCanonicalizing($expected, $document->toArray());
+        Assert::assertEqualsCanonicalizing($expected, $document?->toArray());
     }
 }
