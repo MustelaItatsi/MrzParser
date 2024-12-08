@@ -27,11 +27,19 @@ abstract class AbstractParser
     protected const FIELD_POS  = [];
     protected const LINELENGTH = 0;
     protected const LINECOUNT  = 2;
+    protected const MRZTYPE    = MrzType::TD1;
 
     /**
      * @var array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{ranges:MrzRange[],checkDigitOffset:int}>
      */
     protected static array $checkDigits = [];
+
+    public static function isValidMrz(string $mrz): bool
+    {
+        $mrz = self::normalizeMrz($mrz);
+
+        return strlen($mrz) === static::LINELENGTH * static::LINECOUNT;
+    }
 
     public static function parse(string $mrz): Document
     {
@@ -49,7 +57,7 @@ abstract class AbstractParser
         }
 
         $document = (new Document)
-            ->setMrzType(static::getMrzType())
+            ->setMrzType(self::getMrzType())
             ->setDocumentCode($result['documentCode'])
             ->setCountryOfIssue($result['countryOfIssue'])
             ->setSurname($result['surname'])
@@ -74,14 +82,10 @@ abstract class AbstractParser
         return $document;
     }
 
-    public static function isValidMrz(string $mrz): bool
+    private static function getMrzType(): MrzType
     {
-        $mrz = self::normalizeMrz($mrz);
-
-        return strlen($mrz) === static::LINELENGTH * static::LINECOUNT;
+        return static::MRZTYPE;
     }
-
-    abstract public static function getMrzType(): MrzType;
 
     private static function normalizeMrz(string $mrz): string
     {

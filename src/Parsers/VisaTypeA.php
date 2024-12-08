@@ -15,6 +15,7 @@ use Itatsi\MrzParser\Enums\MrzType;
 
 class VisaTypeA extends TravelDocumentType3 implements ParserInterface
 {
+    protected const MRZTYPE             = MrzType::VA;
     protected static array $checkDigits = [
         'documentNumber' => ['ranges' => [['offset' => 44 + 0, 'length' => 9]], 'checkDigitOffset' => 44 + 9],
         'dateOfBirth'    => ['ranges' => [['offset' => 44 + 13, 'length' => 6]], 'checkDigitOffset' => 44 + 19],
@@ -24,10 +25,5 @@ class VisaTypeA extends TravelDocumentType3 implements ParserInterface
     public static function isValidMrz(string $mrz): bool
     {
         return str_starts_with($mrz, 'V') && parent::isValidMrz($mrz);
-    }
-
-    public static function getMrzType(): MrzType
-    {
-        return MrzType::VA;
     }
 }

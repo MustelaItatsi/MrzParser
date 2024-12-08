@@ -14,6 +14,7 @@ use Itatsi\MrzParser\Enums\MrzType;
 
 class TravelDocumentType2 extends AbstractParser implements ParserInterface
 {
+    protected const MRZTYPE    = MrzType::TD2;
     protected const LINELENGTH = 36;
     protected const FIELD_POS  = [
         'documentCode'   => ['offset' => 0, 'length' => 2],
@@ -35,9 +36,4 @@ class TravelDocumentType2 extends AbstractParser implements ParserInterface
             ['offset' => 36 + 21, 'length' => 7],
         ], 'checkDigitOffset' => 36 + 35],
     ];
-
-    public static function getMrzType(): MrzType
-    {
-        return MrzType::TD2;
-    }
 }
