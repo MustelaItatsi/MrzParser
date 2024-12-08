@@ -3,8 +3,8 @@
   "type": "library",
   "description": "A PHP package for MRZ parsing.",
   "keywords": [
-      "mrz",
-      "mrz-parser"
+    "mrz",
+    "mrz-parser"
   ],
   "license": "BSD-3-Clause",
   "autoload": {
@@ -38,6 +38,11 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "infection/extension-installer": true,
       "phpstan/extension-installer": true
+    },
+    "optimize-autoloader": true,
+    "prepend-autoloader": false,
+    "platform": {
+      "php": "8.1"
     }
   },
   "scripts": {
