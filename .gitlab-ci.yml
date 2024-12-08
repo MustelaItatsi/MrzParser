@@ -119,7 +119,7 @@ test:phpmd:
     - vendor/bin/phpmd src,tests gitlab rulesets.xml --report-file codeclimate-report.json
   artifacts:
     reports:
-      codequality: gl-cs-fixer.json
+      codequality: codeclimate-report.json
   allow_failure: true
 include:
   - component: $CI_SERVER_FQDN/components/sast/sast@2.1.0
