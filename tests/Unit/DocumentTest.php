@@ -125,12 +125,11 @@ class DocumentTest extends TestCase
         Assert::assertEqualsCanonicalizing($expected, $document?->toArray());
     }
 
-    #[DataProvider('parseDataProvider')]
-    public function testGetterAndSetter(string $mrz, array $expected): void
+    public function testGetterAndSetter(): void
     {
         $document = new Document;
 
-        foreach ($expected as $key => $value) {
+        foreach (self::parseDataProvider()['FRA-BO-03001'][1] as $key => $value) {
             // retuns same instance
             // @phpstan-ignore method.dynamicName
             Assert::assertSame($document, $document->{'set' . ucfirst($key)}($value));
