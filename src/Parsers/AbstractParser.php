@@ -13,13 +13,22 @@ use function explode;
 use function str_replace;
 use function substr;
 use function trim;
+use Itatsi\MrzParser\CheckDigit;
 use Itatsi\MrzParser\Document;
 use Itatsi\MrzParser\Enums\MrzType;
 
+/**
+ * @phpstan-type MrzRange array{offset:int,length:int}
+ */
 abstract class AbstractParser
 {
     /** @var array<string,array{offset:int,length:int}> */
     protected const FIELD_POS = [];
+
+    /**
+     * @var array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{ranges:MrzRange[],checkDigitOffset:int}>
+     */
+    protected static array $checkDigits = [];
 
     public static function parse(string $mrz): Document
     {
@@ -48,6 +57,17 @@ abstract class AbstractParser
             ->setDateOfBirth($result['dateOfBirth'])
             ->setSex($result['sex'])
             ->setDateOfExpiry($result['dateOfExpiry']);
+        $checkDigitArray = [];
+
+        foreach (static::$checkDigits as $key => $checkDigitConfig) {
+            $checkDigit            = new CheckDigit(...$checkDigitConfig);
+            $checkDigitArray[$key] = [
+                'value'      => $checkDigit->getCheckDigitFromMrz($mrz),
+                'calculated' => $checkDigit->calculateCheckDigit($mrz),
+                'isValid'    => $checkDigit->isCheckDigitValidInMrz($mrz),
+            ];
+        }
+        $document->setCheckDigits($checkDigitArray);
 
         return $document;
     }

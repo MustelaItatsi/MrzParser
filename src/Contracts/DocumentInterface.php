@@ -11,6 +11,12 @@ namespace Itatsi\MrzParser\Contracts;
 
 use Itatsi\MrzParser\Enums\MrzType;
 
+/**
+ * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{value:int,calculated:int,isValid:bool}>
+ * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
+ * surname:string,givenNames:string,documentNumber:string,nationality:string,
+ * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}
+ */
 interface DocumentInterface
 {
     public function getMrzType(): MrzType;
@@ -65,11 +71,14 @@ interface DocumentInterface
     public function getDateOfExpiry(): string;
 
     /**
+     * @return CheckDigits
+     */
+    public function getCheckDigits(): array;
+
+    /**
      * Convert the document to an associative array. Keep in mind, that this list can be extended anytime!
      *
-     * @return array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
-     * surname:string,givenNames:string,documentNumber:string,nationality:string,
-     * dateOfBirth:string,sex:?string,dateOfExpiry:string}
+     * @return DocumentArray
      */
     public function toArray(): array;
 }

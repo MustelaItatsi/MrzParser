@@ -16,6 +16,12 @@ use Itatsi\MrzParser\Enums\MrzType;
 
 class VisaTypeB extends TravelDocumentType2 implements ParserInterface
 {
+    protected static array $checkDigits = [
+        'documentNumber' => ['ranges' => [['offset' => 36 + 0, 'length' => 9]], 'checkDigitOffset' => 36 + 9],
+        'dateOfBirth'    => ['ranges' => [['offset' => 36 + 13, 'length' => 6]], 'checkDigitOffset' => 36 + 19],
+        'dateOfExpiry'   => ['ranges' => [['offset' => 36 + 21, 'length' => 6]], 'checkDigitOffset' => 36 + 27],
+    ];
+
     public static function isValidMrz(string $mrz): bool
     {
         $mrz = self::normalizeMrz($mrz);

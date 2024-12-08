@@ -25,6 +25,16 @@ class TravelDocumentType3 extends AbstractParser implements ParserInterface
         'sex'            => ['offset' => 64, 'length' => 1],
         'dateOfExpiry'   => ['offset' => 65, 'length' => 6],
     ];
+    protected static array $checkDigits = [
+        'documentNumber'     => ['ranges' => [['offset' => 44 + 0, 'length' => 9]], 'checkDigitOffset' => 44 + 9],
+        'dateOfBirth'        => ['ranges' => [['offset' => 44 + 13, 'length' => 6]], 'checkDigitOffset' => 44 + 19],
+        'dateOfExpiry'       => ['ranges' => [['offset' => 44 + 21, 'length' => 6]], 'checkDigitOffset' => 44 + 27],
+        'combinedCheckDigit' => ['ranges' => [
+            ['offset' => 44 + 0, 'length' => 10],
+            ['offset' => 44 + 13, 'length' => 7],
+            ['offset' => 44 + 21, 'length' => 43 - 21],
+        ], 'checkDigitOffset' => 44 + 43],
+    ];
 
     public static function isValidMrz(string $mrz): bool
     {

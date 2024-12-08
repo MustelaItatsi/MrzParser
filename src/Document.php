@@ -18,6 +18,10 @@ use Itatsi\MrzParser\Parsers\TravelDocumentType3;
 use Itatsi\MrzParser\Parsers\VisaTypeA;
 use Itatsi\MrzParser\Parsers\VisaTypeB;
 
+/**
+ * @phpstan-import-type CheckDigits from DocumentInterface
+ * @phpstan-import-type DocumentArray from DocumentInterface
+ */
 class Document implements DocumentInterface
 {
     /**
@@ -40,6 +44,9 @@ class Document implements DocumentInterface
     private string $dateOfBirth;
     private ?string $sex = null;
     private string $dateOfExpiry;
+
+    /** @var CheckDigits */
+    private array $checkDigits = [];
 
     public static function fromMrz(string $mrz): ?self
     {
@@ -173,13 +180,11 @@ class Document implements DocumentInterface
     }
 
     /**
-     * @return array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
-     * surname:string,givenNames:string,documentNumber:string,nationality:string,
-     * dateOfBirth:string,sex:?string,dateOfExpiry:string}
+     * @return DocumentArray
      */
     public function toArray(): array
     {
-        return [
+        $result = [
             'mrzType'        => $this->getMrzType(),
             'documentCode'   => $this->getDocumentCode(),
             'countryOfIssue' => $this->getCountryOfIssue(),
@@ -191,5 +196,26 @@ class Document implements DocumentInterface
             'sex'            => $this->getSex(),
             'dateOfExpiry'   => $this->getDateOfExpiry(),
         ];
+        $result['checkDigits'] = $this->getCheckDigits();
+
+        return $result;
+    }
+
+    /**
+     * @return CheckDigits
+     */
+    public function getCheckDigits(): array
+    {
+        return $this->checkDigits;
+    }
+
+    /**
+     * @param CheckDigits $checkDigits
+     */
+    public function setCheckDigits(array $checkDigits): self
+    {
+        $this->checkDigits = $checkDigits;
+
+        return $this;
     }
 }

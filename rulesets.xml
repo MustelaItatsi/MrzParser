@@ -11,7 +11,6 @@
     <rule ref="rulesets/unusedcode.xml" />
     <rule ref="rulesets/cleancode.xml">
         <exclude name="StaticAccess" />
-        <exclude name="MissingImport" />
     </rule>
     <rule ref="rulesets/design.xml/ExitExpression" />
     <rule ref="rulesets/design.xml/EvalExpression" />
@@ -21,11 +20,8 @@
     <rule ref="rulesets/design.xml/DevelopmentCodeFragment" />
     <rule ref="rulesets/design.xml/EmptyCatchBlock" />
     <rule ref="rulesets/design.xml/CountInLoopExpression" />
-    <!--<rule ref="rulesets/design.xml/NumberOfChildren">
-        <properties>
-            <property name="minimum" value="2"/>
-        </properties>
-    </rule>-->
+    <rule ref="rulesets/design.xml/NumberOfChildren">
+    </rule>
 
     <rule ref="rulesets/naming.xml/ShortMethodName" />
     <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />

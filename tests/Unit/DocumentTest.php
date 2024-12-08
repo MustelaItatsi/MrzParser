@@ -19,6 +19,9 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase
 {
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     public static function parseDataProvider(): array
     {
         return [
@@ -37,9 +40,31 @@ class DocumentTest extends TestCase
                     'dateOfBirth'    => '900713',
                     'sex'            => 'F',
                     'dateOfExpiry'   => '300211',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 6,
+                            'calculated' => 6,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 9,
+                            'calculated' => 9,
+                            'isValid'    => true,
+                        ],
+                        'combinedCheckDigit' => [
+                            'value'      => 6,
+                            'calculated' => 6,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
             'DEU-BO-02004' => [
-                "IDD<<LOIXPVMEJ2<<<<<<<<<<<<<<<\n" .
+                "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
                 "8308126<3108011D<<2108<<<<<<<5\n" .
                 'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
                 [
@@ -48,11 +73,33 @@ class DocumentTest extends TestCase
                     'countryOfIssue' => 'D',
                     'surname'        => 'MUSTERMANN',
                     'givenNames'     => 'ERIKA',
-                    'documentNumber' => 'LOIXPVMEJ',
+                    'documentNumber' => 'L01XPVM8J',
                     'nationality'    => 'D',
                     'dateOfBirth'    => '830812',
                     'sex'            => null,
                     'dateOfExpiry'   => '310801',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 2,
+                            'calculated' => 2,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 6,
+                            'calculated' => 6,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 1,
+                            'calculated' => 1,
+                            'isValid'    => true,
+                        ],
+                        'combinedCheckDigit' => [
+                            'value'      => 5,
+                            'calculated' => 5,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
             'DEU-BP-03001' => [
                 "ITD<<MUSTERMANN<<ERIKA<<<<<<<<<<<<<<\n" .
@@ -68,6 +115,28 @@ class DocumentTest extends TestCase
                     'dateOfBirth'    => '640812',
                     'sex'            => 'F',
                     'dateOfExpiry'   => '040401',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 5,
+                            'calculated' => 5,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 1,
+                            'calculated' => 1,
+                            'isValid'    => true,
+                        ],
+                        'combinedCheckDigit' => [
+                            'value'      => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
             'ESP-AO-05001' => [
                 "P<ESPESPANOLA<ESPANOLA<<CARMEN<<<<<<<<<<<<<<\n" .
@@ -83,6 +152,28 @@ class DocumentTest extends TestCase
                     'dateOfBirth'    => '800101',
                     'sex'            => 'F',
                     'dateOfExpiry'   => '250101',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 9,
+                            'calculated' => 9,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 7,
+                            'calculated' => 7,
+                            'isValid'    => true,
+                        ],
+                        'combinedCheckDigit' => [
+                            'value'      => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
             'USA-CO-01001' => [
                 "VNUSAHAPPY<<TRAVELER<<<<<<<<<<<<<<<<<<<<<<<<\n" .
@@ -98,21 +189,55 @@ class DocumentTest extends TestCase
                     'dateOfBirth'    => '000101',
                     'sex'            => 'M',
                     'dateOfExpiry'   => '160123',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 0,
+                            'calculated' => 0,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 1,
+                            'calculated' => 1,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
             'FRA-CO-03001' => [
                 "VEFRAWANG<<YI<CHENG<<<<<<<<<<<<<<<<<\n" .
-                '6000000024CHN8001014M1909155<M900618',
+                '1234567897CHN8001014M1909155<M900618',
                 [
                     'mrzType'        => MrzType::VB,
                     'documentCode'   => 'VE',
                     'countryOfIssue' => 'FRA',
                     'surname'        => 'WANG',
                     'givenNames'     => 'YI CHENG',
-                    'documentNumber' => '600000002',
+                    'documentNumber' => '123456789',
                     'nationality'    => 'CHN',
                     'dateOfBirth'    => '800101',
                     'sex'            => 'M',
                     'dateOfExpiry'   => '190915',
+                    'checkDigits'    => [
+                        'documentNumber' => [
+                            'value'      => 7,
+                            'calculated' => 7,
+                            'isValid'    => true,
+                        ],
+                        'dateOfBirth' => [
+                            'value'      => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        'dateOfExpiry' => [
+                            'value'      => 5,
+                            'calculated' => 5,
+                            'isValid'    => true,
+                        ],
+                    ],
                 ]],
         ];
     }
@@ -122,7 +247,7 @@ class DocumentTest extends TestCase
     {
         $document = ParserFacade::parseMrz($mrz);
 
-        Assert::assertEqualsCanonicalizing($expected, $document?->toArray());
+        Assert::assertEquals($expected, $document?->toArray());
     }
 
     public function testGetterAndSetter(): void

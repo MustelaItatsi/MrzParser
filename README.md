@@ -26,7 +26,6 @@ composer require itatsi/mrzparser
 require 'vendor/autoload.php';
 $mrz = 'I<UTOD231458907<<<<<<<<<<<<<<<7408122F1204159UTO<<<<<<<<<<<6ERIKSSON<<ANNA<MARIA<<<<<<<<<<';
 $document = Itatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
-print_r($document->toArray());
 Array
 (
     [mrzType] => Itatsi\MrzParser\Enums\MrzType Enum
@@ -43,6 +42,33 @@ Array
     [dateOfBirth] => 740812
     [sex] => F
     [dateOfExpiry] => 120415
+    [checkDigits] => Array
+        (
+            [documentNumber] => Array
+                (
+                    [value] => 7
+                    [calculated] => 7
+                    [isValid] => 1
+                )
+            [dateOfBirth] => Array
+                (
+                    [value] => 2
+                    [calculated] => 2
+                    [isValid] => 1
+                )
+            [dateOfExpiry] => Array
+                (
+                    [value] => 9
+                    [calculated] => 9
+                    [isValid] => 1
+                )
+            [combinedCheckDigit] => Array
+                (
+                    [value] => 6
+                    [calculated] => 6
+                    [isValid] => 1
+                )
+        )
 )
 ```
 
