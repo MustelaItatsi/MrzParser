@@ -9,11 +9,12 @@
 stages:
   - prepare
   - test
+  - publish
 
 prepare:composer-cache:
   stage: prepare
   dependencies: []
-  cache: 
+  cache:
     - <<: *composer-cache
       policy: pull-push
   image: sineverba/php8xc:latest
@@ -21,7 +22,7 @@ prepare:composer-cache:
     - composer install
   only:
     changes:
-     - composer.lock
+      - composer.lock
 
 test:phpunit_8.1:
   stage: test
@@ -124,4 +125,4 @@ test:phpmd:
 include:
   - component: $CI_SERVER_FQDN/components/sast/sast@2.1.0
   - component: $CI_SERVER_FQDN/components/secret-detection/secret-detection@1.1.2
-  
+  - component: $CI_SERVER_FQDN/base-ci-components/php/gitlab-ci-phpdocumentator@v1.0.2
