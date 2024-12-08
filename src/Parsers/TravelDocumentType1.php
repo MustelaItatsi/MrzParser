@@ -9,13 +9,15 @@
  */
 namespace Itatsi\MrzParser\Parsers;
 
-use function strlen;
 use Itatsi\MrzParser\Contracts\ParserInterface;
 use Itatsi\MrzParser\Enums\MrzType;
 
 class TravelDocumentType1 extends AbstractParser implements ParserInterface
 {
-    protected const FIELD_POS = [
+    protected const MRZTYPE    = MrzType::TD1;
+    protected const LINELENGTH = 30;
+    protected const LINECOUNT  = 3;
+    protected const FIELD_POS  = [
         'documentCode'   => ['offset' => 0, 'length' => 2],
         'countryOfIssue' => ['offset' => 2, 'length' => 3],
         'fullName'       => ['offset' => 60, 'length' => 30],
@@ -25,16 +27,15 @@ class TravelDocumentType1 extends AbstractParser implements ParserInterface
         'sex'            => ['offset' => 37, 'length' => 1],
         'dateOfExpiry'   => ['offset' => 38, 'length' => 6],
     ];
-
-    public static function isValidMrz(string $mrz): bool
-    {
-        $mrz = self::normalizeMrz($mrz);
-
-        return strlen($mrz) === 90;
-    }
-
-    public static function getMrzType(): MrzType
-    {
-        return MrzType::TD1;
-    }
+    protected static array $checkDigits = [
+        'documentNumber'     => ['ranges' => [['offset' => 5, 'length' => 9]], 'checkDigitOffset' => 14],
+        'dateOfBirth'        => ['ranges' => [['offset' => 30, 'length' => 6]], 'checkDigitOffset' => 30 + 6],
+        'dateOfExpiry'       => ['ranges' => [['offset' => 30 + 8, 'length' => 6]], 'checkDigitOffset' => 30 + 14],
+        'combinedCheckDigit' => ['ranges' => [
+            ['offset' => 5, 'length' => 25],
+            ['offset' => 30, 'length' => 7],
+            ['offset' => 30 + 8, 'length' => 7],
+            ['offset' => 30 + 18, 'length' => 11],
+        ], 'checkDigitOffset' => 30 + 29],
+    ];
 }
