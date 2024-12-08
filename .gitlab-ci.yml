@@ -23,11 +23,21 @@ prepare:composer-cache:
     changes:
      - composer.lock
 
-test:phpunit:
+test:phpunit_8.1:
   stage: test
   cache: *composer-cache
   dependencies: []
-  image: sineverba/php8xc:latest
+  image: sineverba/php8xc:1.11.0
+  before_script:
+    - composer install
+  script:
+    - php vendor/bin/phpunit --do-not-cache-result
+
+test:phpunit_8.3:
+  stage: test
+  cache: *composer-cache
+  dependencies: []
+  image: sineverba/php8xc:1.18.0
   before_script:
     - composer install
   script:
@@ -45,7 +55,7 @@ test:infection:
   stage: test
   cache: *composer-cache
   dependencies: []
-  needs: ["test:phpunit"]
+  needs: ["test:phpunit_8.3"]
   image: sineverba/php8xc:latest
   before_script:
     - composer install
