@@ -122,6 +122,7 @@ class DocumentTest extends TestCase
         $document = ParserFacade::parseMrz($mrz);
 
         foreach ($expected as $expectedKey => $expectedValue) {
+            // @phpstan-ignore method.dynamicName
             Assert::assertEquals($expectedValue, $document->{'get' . ucfirst($expectedKey)}());
         }
         Assert::assertEqualsCanonicalizing($expected, $document?->toArray());
