@@ -30,6 +30,16 @@ class Document implements DocumentInterface
         TravelDocumentType2::class,
         TravelDocumentType3::class,
     ];
+    private MrzType $mrzType;
+    private string $documentCode;
+    private string $countryOfIssue;
+    private string $surname;
+    private string $givenNames;
+    private string $documentNumber;
+    private string $nationality;
+    private string $dateOfBirth;
+    private ?string $sex = null;
+    private string $dateOfExpiry;
 
     public static function fromMrz(string $mrz): ?self
     {
@@ -42,23 +52,16 @@ class Document implements DocumentInterface
         return null;
     }
 
-    public function __construct(
-        private MrzType $mrzType,
-        private string $documentCode,
-        private string $countryOfIssue,
-        private string $surname,
-        private string $givenNames,
-        private string $documentNumber,
-        private string $nationality,
-        private string $dateOfBirth,
-        private ?string $sex,
-        private string $dateOfExpiry
-    ) {
-    }
-
     public function getMrzType(): MrzType
     {
         return $this->mrzType;
+    }
+
+    public function setMrzType(MrzType $mrzType): self
+    {
+        $this->mrzType = $mrzType;
+
+        return $this;
     }
 
     public function getDocumentCode(): string
@@ -66,9 +69,23 @@ class Document implements DocumentInterface
         return $this->documentCode;
     }
 
+    public function setDocumentCode(string $documentCode): self
+    {
+        $this->documentCode = $documentCode;
+
+        return $this;
+    }
+
     public function getCountryOfIssue(): string
     {
         return $this->countryOfIssue;
+    }
+
+    public function setCountryOfIssue(string $countryOfIssue): self
+    {
+        $this->countryOfIssue = $countryOfIssue;
+
+        return $this;
     }
 
     public function getSurname(): string
@@ -76,9 +93,23 @@ class Document implements DocumentInterface
         return $this->surname;
     }
 
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
     public function getGivenNames(): string
     {
         return $this->givenNames;
+    }
+
+    public function setGivenNames(string $givenNames): self
+    {
+        $this->givenNames = $givenNames;
+
+        return $this;
     }
 
     public function getDocumentNumber(): string
@@ -86,9 +117,23 @@ class Document implements DocumentInterface
         return $this->documentNumber;
     }
 
+    public function setDocumentNumber(string $documentNumber): self
+    {
+        $this->documentNumber = $documentNumber;
+
+        return $this;
+    }
+
     public function getNationality(): string
     {
         return $this->nationality;
+    }
+
+    public function setNationality(string $nationality): self
+    {
+        $this->nationality = $nationality;
+
+        return $this;
     }
 
     public function getDateOfBirth(): string
@@ -96,14 +141,35 @@ class Document implements DocumentInterface
         return $this->dateOfBirth;
     }
 
+    public function setDateOfBirth(string $dateOfBirth): self
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
     public function getSex(): ?string
     {
         return $this->sex;
     }
 
+    public function setSex(?string $sex): self
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
     public function getDateOfExpiry(): string
     {
         return $this->dateOfExpiry;
+    }
+
+    public function setDateOfExpiry(string $dateOfExpiry): self
+    {
+        $this->dateOfExpiry = $dateOfExpiry;
+
+        return $this;
     }
 
     /**

@@ -102,11 +102,25 @@ test:php-cs-fixer:
   before_script:
     - composer install
   script:
-    - vendor/bin/php-cs-fixer fix -v --dry-run --format=gitlab --using-cache=no src/ > gl-cs-fixer.json || exit 0
+    - vendor/bin/php-cs-fixer fix -v --dry-run --format=gitlab --using-cache=no src/ > gl-cs-fixer.json
   artifacts:
     reports:
       codequality: gl-cs-fixer.json
+  allow_failure: true
 
+test:phpmd:
+  stage: test
+  cache: *composer-cache
+  dependencies: []
+  image: sineverba/php8xc:latest
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/phpmd src,tests gitlab rulesets.xml --report-file codeclimate-report.json
+  artifacts:
+    reports:
+      codequality: codeclimate-report.json
+  allow_failure: true
 include:
   - component: $CI_SERVER_FQDN/components/sast/sast@2.1.0
   - component: $CI_SERVER_FQDN/components/secret-detection/secret-detection@1.1.2

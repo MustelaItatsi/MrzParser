@@ -10,6 +10,7 @@
 namespace Itatsi\MrzParser\Tests\Unit;
 
 use function ucfirst;
+use Itatsi\MrzParser\Document;
 use Itatsi\MrzParser\Enums\MrzType;
 use Itatsi\MrzParser\Facades\ParserFacade;
 use PHPUnit\Framework\Assert;
@@ -121,10 +122,21 @@ class DocumentTest extends TestCase
     {
         $document = ParserFacade::parseMrz($mrz);
 
-        foreach ($expected as $expectedKey => $expectedValue) {
-            // @phpstan-ignore method.dynamicName
-            Assert::assertEquals($expectedValue, $document->{'get' . ucfirst($expectedKey)}());
-        }
         Assert::assertEqualsCanonicalizing($expected, $document?->toArray());
+    }
+
+    public function testGetterAndSetter(): void
+    {
+        $document = new Document;
+
+        foreach (self::parseDataProvider()['FRA-BO-03001'][1] as $key => $value) {
+            // retuns same instance
+            // @phpstan-ignore method.dynamicName
+            Assert::assertSame($document, $document->{'set' . ucfirst($key)}($value));
+
+            // get given value
+            // @phpstan-ignore method.dynamicName
+            Assert::assertEquals($value, $document->{'get' . ucfirst($key)}());
+        }
     }
 }

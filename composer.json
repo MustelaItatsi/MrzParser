@@ -26,6 +26,7 @@
     "friendsofphp/php-cs-fixer": "^3.65",
     "infection/infection": "^0.29.8",
     "phpstan/extension-installer": "^1.4",
+    "phpmd/phpmd": "^2.15",
     "phpstan/phpstan": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0",
     "phpstan/phpstan-strict-rules": "^2.0",
@@ -48,6 +49,7 @@
   "scripts": {
     "test": [
       "@style:php-cs-check",
+      "@test:phpmd",
       "@test:infection",
       "@style:phpstan",
       "@check:dependency"
@@ -57,6 +59,9 @@
     ],
     "test:unit": [
       "@phpunit --testsuite=Unit"
+    ],
+    "test:phpmd": [
+      "@phpmd"
     ],
     "test:coverage": [
       "@phpunit --coverage-text --coverage-html=var/phpunit/coverage"
@@ -80,10 +85,11 @@
     "check:dependency": [
       "@composer-dependency-analyser"
     ],
-    "phpunit": "./vendor/bin/phpunit",
     "php-cs-check": "./vendor/bin/php-cs-fixer check --diff",
     "php-cs-fix": "./vendor/bin/php-cs-fixer fix",
+    "phpmd" : "./vendor/bin/phpmd src,tests ansi rulesets.xml",
     "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon",
+    "phpunit": "./vendor/bin/phpunit",
     "composer-dependency-analyser": "./vendor/bin/composer-dependency-analyser",
     "infection": "php -d xdebug.mode=coverage ./vendor/bin/infection -n -jmax --min-msi=100 --min-covered-msi=100 --show-mutations"
   }

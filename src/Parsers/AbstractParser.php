@@ -23,27 +23,7 @@ abstract class AbstractParser
 
     public static function parse(string $mrz): Document
     {
-        $mrz = static::normalizeMrz($mrz);
-
-        return new Document(
-            static::getMrzType(),
-            // @phpstan-ignore staticClassAccess.privateMethod
-            ...static::getFields($mrz),
-        );
-    }
-
-    abstract public static function getMrzType(): MrzType;
-
-    protected static function normalizeMrz(string $mrz): string
-    {
-        return str_replace(["\n", ' '], '', $mrz);
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    private static function getFields(string $mrz): array
-    {
+        $mrz    = static::normalizeMrz($mrz);
         $result = [];
 
         foreach (static::FIELD_POS as $key => $value) {
@@ -57,7 +37,26 @@ abstract class AbstractParser
             $value = static::normalizeField($value);
         }
 
-        return $result;
+        $document = (new Document)
+            ->setMrzType(static::getMrzType())
+            ->setDocumentCode($result['documentCode'])
+            ->setCountryOfIssue($result['countryOfIssue'])
+            ->setSurname($result['surname'])
+            ->setGivenNames($result['givenNames'])
+            ->setDocumentNumber($result['documentNumber'])
+            ->setNationality($result['nationality'])
+            ->setDateOfBirth($result['dateOfBirth'])
+            ->setSex($result['sex'])
+            ->setDateOfExpiry($result['dateOfExpiry']);
+
+        return $document;
+    }
+
+    abstract public static function getMrzType(): MrzType;
+
+    protected static function normalizeMrz(string $mrz): string
+    {
+        return str_replace(["\n", ' '], '', $mrz);
     }
 
     private static function normalizeField(string $value): ?string
