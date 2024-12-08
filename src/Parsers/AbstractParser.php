@@ -11,6 +11,7 @@ namespace Itatsi\MrzParser\Parsers;
 
 use function explode;
 use function str_replace;
+use function strlen;
 use function substr;
 use function trim;
 use Itatsi\MrzParser\CheckDigit;
@@ -23,7 +24,9 @@ use Itatsi\MrzParser\Enums\MrzType;
 abstract class AbstractParser
 {
     /** @var array<string,array{offset:int,length:int}> */
-    protected const FIELD_POS = [];
+    protected const FIELD_POS  = [];
+    protected const LINELENGTH = 0;
+    protected const LINECOUNT  = 2;
 
     /**
      * @var array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{ranges:MrzRange[],checkDigitOffset:int}>
@@ -32,7 +35,7 @@ abstract class AbstractParser
 
     public static function parse(string $mrz): Document
     {
-        $mrz    = static::normalizeMrz($mrz);
+        $mrz    = self::normalizeMrz($mrz);
         $result = [];
 
         foreach (static::FIELD_POS as $key => $value) {
@@ -42,8 +45,7 @@ abstract class AbstractParser
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
-            // @phpstan-ignore staticClassAccess.privateMethod
-            $value = static::normalizeField($value);
+            $value = self::normalizeField($value);
         }
 
         $document = (new Document)
@@ -72,9 +74,16 @@ abstract class AbstractParser
         return $document;
     }
 
+    public static function isValidMrz(string $mrz): bool
+    {
+        $mrz = self::normalizeMrz($mrz);
+
+        return strlen($mrz) === static::LINELENGTH * static::LINECOUNT;
+    }
+
     abstract public static function getMrzType(): MrzType;
 
-    protected static function normalizeMrz(string $mrz): string
+    private static function normalizeMrz(string $mrz): string
     {
         return str_replace(["\n", ' '], '', $mrz);
     }

@@ -10,7 +10,6 @@
 namespace Itatsi\MrzParser\Parsers;
 
 use function str_starts_with;
-use function strlen;
 use Itatsi\MrzParser\Contracts\ParserInterface;
 use Itatsi\MrzParser\Enums\MrzType;
 
@@ -24,9 +23,7 @@ class VisaTypeB extends TravelDocumentType2 implements ParserInterface
 
     public static function isValidMrz(string $mrz): bool
     {
-        $mrz = self::normalizeMrz($mrz);
-
-        return str_starts_with($mrz, 'V') && strlen($mrz) === 72;
+        return str_starts_with($mrz, 'V') && parent::isValidMrz($mrz);
     }
 
     public static function getMrzType(): MrzType

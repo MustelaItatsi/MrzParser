@@ -9,13 +9,13 @@
  */
 namespace Itatsi\MrzParser\Parsers;
 
-use function strlen;
 use Itatsi\MrzParser\Contracts\ParserInterface;
 use Itatsi\MrzParser\Enums\MrzType;
 
 class TravelDocumentType2 extends AbstractParser implements ParserInterface
 {
-    protected const FIELD_POS = [
+    protected const LINELENGTH = 36;
+    protected const FIELD_POS  = [
         'documentCode'   => ['offset' => 0, 'length' => 2],
         'countryOfIssue' => ['offset' => 2, 'length' => 3],
         'fullName'       => ['offset' => 5, 'length' => 31],
@@ -35,13 +35,6 @@ class TravelDocumentType2 extends AbstractParser implements ParserInterface
             ['offset' => 36 + 21, 'length' => 7],
         ], 'checkDigitOffset' => 36 + 35],
     ];
-
-    public static function isValidMrz(string $mrz): bool
-    {
-        $mrz = self::normalizeMrz($mrz);
-
-        return strlen($mrz) === 72;
-    }
 
     public static function getMrzType(): MrzType
     {
