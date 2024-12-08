@@ -6,7 +6,11 @@
 [![Coverage](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)
 [![Mutation testing badge](https://img.shields.io/endpoint?logo=null&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FItatsi%2FMrzParser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/Itatsi/MrzParser/main)
 
-A PHP package for MRZ parsing
+A PHP package for MRZ parsing.
+
+I needed a method to parse mrz for a project. Unfortunately, many other mrz parsers for php either had the country decoded (I prefer to work with alpha3 codes rather than country names), few/no tests or even look abandoned.
+
+That's why I wrote a small lib that takes care of this.
 
 ## Installation
 
