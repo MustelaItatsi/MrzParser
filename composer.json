@@ -1,5 +1,5 @@
 {
-  "name": "itatsi/mrzparser",
+  "name": "mustelaitatsi/mrzparser",
   "type": "library",
   "description": "A PHP package for MRZ parsing.",
   "keywords": [
@@ -9,8 +9,8 @@
   "license": "BSD-3-Clause",
   "autoload": {
     "psr-4": {
-      "Itatsi\\MrzParser\\": "src/",
-      "Itatsi\\MrzParser\\Tests\\": "tests/"
+      "MustelaItatsi\\MrzParser\\": "src/",
+      "MustelaItatsi\\MrzParser\\Tests\\": "tests/"
     }
   },
   "authors": [

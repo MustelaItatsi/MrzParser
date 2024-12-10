@@ -1,10 +1,10 @@
 # MrzParser
 
-[![Pipeline Status](https://gitlab.com/Itatsi/MrzParser/badges/main/pipeline.svg)](https://gitlab.com/Itatsi/MrzParser/-/commits/main)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/itatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/itatsi/mrzparser)
-[![Total Downloads](https://img.shields.io/packagist/dt/itatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/itatsi/mrzparser)
-[![Coverage](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)](https://gitlab.com/Itatsi/MrzParser/badges/main/coverage.svg)
-[![Mutation testing badge](https://img.shields.io/endpoint?logo=null&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FItatsi%2FMrzParser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/Itatsi/MrzParser/main)
+[![Pipeline Status](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/pipeline.svg)](https://gitlab.com/MustelaItatsi/MrzParser/-/commits/main)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mustelaitatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/mustelaitatsi/mrzparser)
+[![Total Downloads](https://img.shields.io/packagist/dt/mustelaitatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/mustelaitatsi/mrzparser)
+[![Coverage](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/coverage.svg)](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/coverage.svg)
+[![Mutation testing badge](https://img.shields.io/endpoint?logo=null&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FMustelaItatsi%2FMrzParser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/MustelaItatsi/MrzParser/main)
 
 A PHP package for MRZ parsing.
 
@@ -17,7 +17,7 @@ That's why I wrote a small lib that takes care of this.
 You can install the package via composer:
 
 ```bash
-composer require itatsi/mrzparser
+composer require mustelaitatsi/mrzparser
 ```
 
 ## Usage
@@ -25,10 +25,10 @@ composer require itatsi/mrzparser
 ```php
 require 'vendor/autoload.php';
 $mrz = 'I<UTOD231458907<<<<<<<<<<<<<<<7408122F1204159UTO<<<<<<<<<<<6ERIKSSON<<ANNA<MARIA<<<<<<<<<<';
-$document = Itatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
+$document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
 Array
 (
-    [mrzType] => Itatsi\MrzParser\Enums\MrzType Enum
+    [mrzType] => MustelaItatsi\MrzParser\Enums\MrzType Enum
         (
             [name] => TD1
         )

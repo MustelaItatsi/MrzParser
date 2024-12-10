@@ -6,7 +6,7 @@ parameters:
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         # ignore test data provider array shape definition
-        - '#Itatsi\\MrzParser\\Tests\\Unit.* no value type specified in iterable type#'
+        - '#MustelaItatsi\\MrzParser\\Tests\\Unit.* no value type specified in iterable type#'
 
 includes:
 	- phar://phpstan.phar/conf/bleedingEdge.neon

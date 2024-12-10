@@ -7,12 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Itatsi\MrzParser\Tests\Unit;
+namespace MustelaItatsi\MrzParser\Tests\Unit;
 
 use function ucfirst;
-use Itatsi\MrzParser\Document;
-use Itatsi\MrzParser\Enums\MrzType;
-use Itatsi\MrzParser\Facades\ParserFacade;
+use MustelaItatsi\MrzParser\Document;
+use MustelaItatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\Facades\ParserFacade;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

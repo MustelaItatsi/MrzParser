@@ -7,10 +7,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Itatsi\MrzParser\Parsers;
+namespace MustelaItatsi\MrzParser\Parsers;
 
-use Itatsi\MrzParser\Contracts\ParserInterface;
-use Itatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\Contracts\ParserInterface;
+use MustelaItatsi\MrzParser\Enums\MrzType;
 
 class TravelDocumentType3 extends AbstractParser implements ParserInterface
 {

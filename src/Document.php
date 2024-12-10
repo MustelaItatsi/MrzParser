@@ -7,16 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Itatsi\MrzParser;
+namespace MustelaItatsi\MrzParser;
 
-use Itatsi\MrzParser\Contracts\DocumentInterface;
-use Itatsi\MrzParser\Contracts\ParserInterface;
-use Itatsi\MrzParser\Enums\MrzType;
-use Itatsi\MrzParser\Parsers\TravelDocumentType1;
-use Itatsi\MrzParser\Parsers\TravelDocumentType2;
-use Itatsi\MrzParser\Parsers\TravelDocumentType3;
-use Itatsi\MrzParser\Parsers\VisaTypeA;
-use Itatsi\MrzParser\Parsers\VisaTypeB;
+use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
+use MustelaItatsi\MrzParser\Contracts\ParserInterface;
+use MustelaItatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\Parsers\TravelDocumentType1;
+use MustelaItatsi\MrzParser\Parsers\TravelDocumentType2;
+use MustelaItatsi\MrzParser\Parsers\TravelDocumentType3;
+use MustelaItatsi\MrzParser\Parsers\VisaTypeA;
+use MustelaItatsi\MrzParser\Parsers\VisaTypeB;
 
 /**
  * @phpstan-import-type CheckDigits from DocumentInterface

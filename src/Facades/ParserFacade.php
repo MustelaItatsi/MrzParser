@@ -7,10 +7,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Itatsi\MrzParser\Facades;
+namespace MustelaItatsi\MrzParser\Facades;
 
-use Itatsi\MrzParser\Contracts\DocumentInterface;
-use Itatsi\MrzParser\Document;
+use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
+use MustelaItatsi\MrzParser\Document;
 
 class ParserFacade
 {

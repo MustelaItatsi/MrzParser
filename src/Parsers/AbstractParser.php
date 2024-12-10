@@ -7,16 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Itatsi\MrzParser\Parsers;
+namespace MustelaItatsi\MrzParser\Parsers;
 
 use function explode;
 use function str_replace;
 use function strlen;
 use function substr;
 use function trim;
-use Itatsi\MrzParser\CheckDigit;
-use Itatsi\MrzParser\Document;
-use Itatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\CheckDigit;
+use MustelaItatsi\MrzParser\Document;
+use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
  * @phpstan-type MrzRange array{offset:int,length:int}
