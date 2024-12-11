@@ -56,7 +56,7 @@ class DocumentTest extends TestCase
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
+                        'overall' => [
                             'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
@@ -95,7 +95,7 @@ class DocumentTest extends TestCase
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
+                        'overall' => [
                             'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
@@ -133,7 +133,7 @@ class DocumentTest extends TestCase
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
+                        'overall' => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
@@ -171,7 +171,7 @@ class DocumentTest extends TestCase
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
+                        'overall' => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,

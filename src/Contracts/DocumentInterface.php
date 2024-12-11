@@ -12,36 +12,46 @@ namespace MustelaItatsi\MrzParser\Contracts;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
- * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{extracted:int,calculated:int,isValid:bool}>
- * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,issuingStateOrOrganization:string,
- * primaryIdentifier:string,secondaryIdentifier:string,documentNumber:string,nationality:string,
- * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}
+ * @phpstan-type CheckDigits array<'overall'|'dateOfBirth'|'dateOfExpiry'|'documentNumber', array{extracted:int,calculated:int,isValid:bool}>
+ * @phpstan-type DocumentArray array{
+ *     mrzType:MrzType,
+ *     documentCode:string,
+ *     issuingStateOrOrganization:string,
+ *     primaryIdentifier:string,
+ *     secondaryIdentifier:string,
+ *     documentNumber:string,
+ *     nationality:string,
+ *     dateOfBirth:string,
+ *     sex:?string,
+ *     dateOfExpiry:string,
+ *     checkDigits:CheckDigits
+ * }
  */
 interface DocumentInterface
 {
     public function getMrzType(): MrzType;
 
     /**
-     * Starts normaly with I(id card), P(passport), A(residence permit),
-     * or V(visa), but some counties make a lot af magic with it...
-     * See IR on FRA-HO-12001. Send me a mail if someone finds a definition.
+     * Get the document code.
+     * Typically starts with I (ID card), P (passport), A (residence permit),
+     * or V (visa). Some countries may use other codes.
+     *
+     * @see ICAO Doc 9303 Part 3 Section 4
      */
     public function getDocumentCode(): string;
 
     /**
-     * Country or organizations of issue.
-     *
      * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
      */
     public function getIssuingStateOrOrganization(): string;
 
     /**
-     * Keep in mind, that names can be croped.
+     * (e.g., surname. Names may be croped.
      */
     public function getPrimaryIdentifier(): string;
 
     /**
-     * Keep in mind, that names can be croped.
+     * e.g., given names. Names may be croped.
      */
     public function getSecondaryIdentifier(): string;
 
@@ -55,27 +65,26 @@ interface DocumentInterface
     public function getNationality(): string;
 
     /**
-     * in datetime format ymd.
+     * in YYMMDD format.
      */
     public function getDateOfBirth(): string;
 
-    /**
-     * sex, if available.
-     */
     public function getSex(): ?string;
 
     /**
-     * in datetime format ymd.
+     * in YYMMDD format.
      */
     public function getDateOfExpiry(): string;
 
     /**
+     * Get the check digits for the document fields.
+     *
      * @return CheckDigits
      */
     public function getCheckDigits(): array;
 
     /**
-     * Convert the document to an associative array. Keep in mind, that this list can be extended anytime!
+     * Convert the document to an associative array.
      *
      * @return DocumentArray
      */

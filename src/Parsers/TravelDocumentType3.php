@@ -27,10 +27,10 @@ class TravelDocumentType3 extends AbstractParser implements ParserInterface
         'dateOfExpiry'               => ['offset' => 65, 'length' => 6],
     ];
     protected static array $checkDigits = [
-        'documentNumber'     => ['ranges' => [['offset' => 44 + 0, 'length' => 9]], 'checkDigitOffset' => 44 + 9],
-        'dateOfBirth'        => ['ranges' => [['offset' => 44 + 13, 'length' => 6]], 'checkDigitOffset' => 44 + 19],
-        'dateOfExpiry'       => ['ranges' => [['offset' => 44 + 21, 'length' => 6]], 'checkDigitOffset' => 44 + 27],
-        'combinedCheckDigit' => ['ranges' => [
+        'documentNumber' => ['ranges' => [['offset' => 44 + 0, 'length' => 9]], 'checkDigitOffset' => 44 + 9],
+        'dateOfBirth'    => ['ranges' => [['offset' => 44 + 13, 'length' => 6]], 'checkDigitOffset' => 44 + 19],
+        'dateOfExpiry'   => ['ranges' => [['offset' => 44 + 21, 'length' => 6]], 'checkDigitOffset' => 44 + 27],
+        'overall'        => ['ranges' => [
             ['offset' => 44 + 0, 'length' => 10],
             ['offset' => 44 + 13, 'length' => 7],
             ['offset' => 44 + 21, 'length' => 43 - 21],

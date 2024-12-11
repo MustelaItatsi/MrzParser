@@ -53,7 +53,7 @@ $document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
         'calculated' => 9,
         'isValid'    => true,
     ],
-    'combinedCheckDigit' => [
+    'overall' => [
         'value'      => 6,
         'calculated' => 6,
         'isValid'    => true,

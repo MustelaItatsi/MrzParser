@@ -30,7 +30,7 @@ abstract class AbstractParser
     protected const MRZTYPE    = MrzType::TD1;
 
     /**
-     * @var array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{ranges:MrzRange[],checkDigitOffset:int}>
+     * @var array<'dateOfBirth'|'dateOfExpiry'|'documentNumber'|'overall',array{ranges:MrzRange[],checkDigitOffset:int}>
      */
     protected static array $checkDigits = [];
 
