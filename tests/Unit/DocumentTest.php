@@ -42,22 +42,22 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '300211',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 6,
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 8,
+                            'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 9,
+                            'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
                         'combinedCheckDigit' => [
-                            'value'      => 6,
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
@@ -81,22 +81,22 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '310801',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 2,
+                            'extracted'  => 2,
                             'calculated' => 2,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 6,
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
                         'combinedCheckDigit' => [
-                            'value'      => 5,
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
@@ -119,22 +119,22 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '040401',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 5,
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
                         'combinedCheckDigit' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
@@ -157,22 +157,22 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '250101',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 9,
+                            'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 7,
+                            'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
                         'combinedCheckDigit' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
@@ -195,17 +195,17 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '160123',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 0,
+                            'extracted'  => 0,
                             'calculated' => 0,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 8,
+                            'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
@@ -228,17 +228,17 @@ class DocumentTest extends TestCase
                     'dateOfExpiry'               => '190915',
                     'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 7,
+                            'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 5,
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],

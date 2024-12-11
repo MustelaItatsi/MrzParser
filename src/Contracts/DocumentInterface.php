@@ -12,7 +12,7 @@ namespace MustelaItatsi\MrzParser\Contracts;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
- * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{value:int,calculated:int,isValid:bool}>
+ * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{extracted:int,calculated:int,isValid:bool}>
  * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,issuingStateOrOrganization:string,
  * primaryIdentifier:string,secondaryIdentifier:string,documentNumber:string,nationality:string,
  * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}

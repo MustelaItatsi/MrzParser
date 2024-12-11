@@ -72,7 +72,7 @@ abstract class AbstractParser
         foreach (static::$checkDigits as $key => $checkDigitConfig) {
             $checkDigit            = new CheckDigit(...$checkDigitConfig);
             $checkDigitArray[$key] = [
-                'value'      => $checkDigit->getCheckDigitFromMrz($mrz),
+                'extracted'  => $checkDigit->getCheckDigitFromMrz($mrz),
                 'calculated' => $checkDigit->calculateCheckDigit($mrz),
                 'isValid'    => $checkDigit->isCheckDigitValidInMrz($mrz),
             ];
