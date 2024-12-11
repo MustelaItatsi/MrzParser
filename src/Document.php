@@ -37,8 +37,8 @@ class Document implements DocumentInterface
     private MrzType $mrzType;
     private string $documentCode;
     private string $countryOfIssue;
-    private string $surname;
-    private string $givenNames;
+    private string $primaryIdentifier;
+    private string $secondaryIdentifier;
     private string $documentNumber;
     private string $nationality;
     private string $dateOfBirth;
@@ -95,26 +95,26 @@ class Document implements DocumentInterface
         return $this;
     }
 
-    public function getSurname(): string
+    public function getPrimaryIdentifier(): string
     {
-        return $this->surname;
+        return $this->primaryIdentifier;
     }
 
-    public function setSurname(string $surname): self
+    public function setPrimaryIdentifier(string $primaryIdentifier): self
     {
-        $this->surname = $surname;
+        $this->primaryIdentifier = $primaryIdentifier;
 
         return $this;
     }
 
-    public function getGivenNames(): string
+    public function getSecondaryIdentifier(): string
     {
-        return $this->givenNames;
+        return $this->secondaryIdentifier;
     }
 
-    public function setGivenNames(string $givenNames): self
+    public function setSecondaryIdentifier(string $secondaryIdentifier): self
     {
-        $this->givenNames = $givenNames;
+        $this->secondaryIdentifier = $secondaryIdentifier;
 
         return $this;
     }
@@ -185,16 +185,16 @@ class Document implements DocumentInterface
     public function toArray(): array
     {
         $result = [
-            'mrzType'        => $this->getMrzType(),
-            'documentCode'   => $this->getDocumentCode(),
-            'countryOfIssue' => $this->getCountryOfIssue(),
-            'surname'        => $this->getSurname(),
-            'givenNames'     => $this->getGivenNames(),
-            'documentNumber' => $this->getDocumentNumber(),
-            'nationality'    => $this->getNationality(),
-            'dateOfBirth'    => $this->getDateOfBirth(),
-            'sex'            => $this->getSex(),
-            'dateOfExpiry'   => $this->getDateOfExpiry(),
+            'mrzType'             => $this->getMrzType(),
+            'documentCode'        => $this->getDocumentCode(),
+            'countryOfIssue'      => $this->getCountryOfIssue(),
+            'primaryIdentifier'   => $this->getPrimaryIdentifier(),
+            'secondaryIdentifier' => $this->getSecondaryIdentifier(),
+            'documentNumber'      => $this->getDocumentNumber(),
+            'nationality'         => $this->getNationality(),
+            'dateOfBirth'         => $this->getDateOfBirth(),
+            'sex'                 => $this->getSex(),
+            'dateOfExpiry'        => $this->getDateOfExpiry(),
         ];
         $result['checkDigits'] = $this->getCheckDigits();
 

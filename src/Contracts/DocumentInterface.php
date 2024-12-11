@@ -14,7 +14,7 @@ use MustelaItatsi\MrzParser\Enums\MrzType;
 /**
  * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{value:int,calculated:int,isValid:bool}>
  * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
- * surname:string,givenNames:string,documentNumber:string,nationality:string,
+ * primaryIdentifier:string,secondaryIdentifier:string,documentNumber:string,nationality:string,
  * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}
  */
 interface DocumentInterface
@@ -22,7 +22,6 @@ interface DocumentInterface
     public function getMrzType(): MrzType;
 
     /**
-     * Get the document code.
      * Starts normaly with I(id card), P(passport), A(residence permit),
      * or V(visa), but some counties make a lot af magic with it...
      * See IR on FRA-HO-12001. Send me a mail if someone finds a definition.
@@ -37,14 +36,14 @@ interface DocumentInterface
     public function getCountryOfIssue(): string;
 
     /**
-     * Get the surname. Keep in mind, that names can be croped. lastname.
+     * Keep in mind, that names can be croped.
      */
-    public function getSurname(): string;
+    public function getPrimaryIdentifier(): string;
 
     /**
-     * Get the given names. Keep in mind, that names can be croped. firstname.
+     * Keep in mind, that names can be croped.
      */
-    public function getGivenNames(): string;
+    public function getSecondaryIdentifier(): string;
 
     public function getDocumentNumber(): string;
 

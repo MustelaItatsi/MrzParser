@@ -49,7 +49,7 @@ abstract class AbstractParser
         foreach (static::FIELD_POS as $key => $value) {
             $result[$key] = substr($mrz, ...$value);
         }
-        [$result['surname'], $result['givenNames']] = explode('<<', $result['fullName']);
+        [$result['primaryIdentifier'], $result['secondaryIdentifier']] = explode('<<', $result['fullName']);
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
@@ -60,8 +60,8 @@ abstract class AbstractParser
             ->setMrzType(self::getMrzType())
             ->setDocumentCode($result['documentCode'])
             ->setCountryOfIssue($result['countryOfIssue'])
-            ->setSurname($result['surname'])
-            ->setGivenNames($result['givenNames'])
+            ->setPrimaryIdentifier($result['primaryIdentifier'])
+            ->setSecondaryIdentifier($result['secondaryIdentifier'])
             ->setDocumentNumber($result['documentNumber'])
             ->setNationality($result['nationality'])
             ->setDateOfBirth($result['dateOfBirth'])
