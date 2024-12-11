@@ -17,14 +17,14 @@ class TravelDocumentType3 extends AbstractParser implements ParserInterface
     protected const MRZTYPE    = MrzType::TD3;
     protected const LINELENGTH = 44;
     protected const FIELD_POS  = [
-        'documentCode'   => ['offset' => 0, 'length' => 2],
-        'countryOfIssue' => ['offset' => 2, 'length' => 3],
-        'fullName'       => ['offset' => 5, 'length' => 39],
-        'documentNumber' => ['offset' => 44, 'length' => 9],
-        'nationality'    => ['offset' => 54, 'length' => 3],
-        'dateOfBirth'    => ['offset' => 57, 'length' => 6],
-        'sex'            => ['offset' => 64, 'length' => 1],
-        'dateOfExpiry'   => ['offset' => 65, 'length' => 6],
+        'documentCode'               => ['offset' => 0, 'length' => 2],
+        'issuingStateOrOrganization' => ['offset' => 2, 'length' => 3],
+        'fullName'                   => ['offset' => 5, 'length' => 39],
+        'documentNumber'             => ['offset' => 44, 'length' => 9],
+        'nationality'                => ['offset' => 54, 'length' => 3],
+        'dateOfBirth'                => ['offset' => 57, 'length' => 6],
+        'sex'                        => ['offset' => 64, 'length' => 1],
+        'dateOfExpiry'               => ['offset' => 65, 'length' => 6],
     ];
     protected static array $checkDigits = [
         'documentNumber'     => ['ranges' => [['offset' => 44 + 0, 'length' => 9]], 'checkDigitOffset' => 44 + 9],

@@ -18,14 +18,14 @@ class TravelDocumentType1 extends AbstractParser implements ParserInterface
     protected const LINELENGTH = 30;
     protected const LINECOUNT  = 3;
     protected const FIELD_POS  = [
-        'documentCode'   => ['offset' => 0, 'length' => 2],
-        'countryOfIssue' => ['offset' => 2, 'length' => 3],
-        'fullName'       => ['offset' => 60, 'length' => 30],
-        'documentNumber' => ['offset' => 5, 'length' => 9],
-        'nationality'    => ['offset' => 45, 'length' => 3],
-        'dateOfBirth'    => ['offset' => 30, 'length' => 6],
-        'sex'            => ['offset' => 37, 'length' => 1],
-        'dateOfExpiry'   => ['offset' => 38, 'length' => 6],
+        'documentCode'               => ['offset' => 0, 'length' => 2],
+        'issuingStateOrOrganization' => ['offset' => 2, 'length' => 3],
+        'fullName'                   => ['offset' => 60, 'length' => 30],
+        'documentNumber'             => ['offset' => 5, 'length' => 9],
+        'nationality'                => ['offset' => 45, 'length' => 3],
+        'dateOfBirth'                => ['offset' => 30, 'length' => 6],
+        'sex'                        => ['offset' => 37, 'length' => 1],
+        'dateOfExpiry'               => ['offset' => 38, 'length' => 6],
     ];
     protected static array $checkDigits = [
         'documentNumber'     => ['ranges' => [['offset' => 5, 'length' => 9]], 'checkDigitOffset' => 14],

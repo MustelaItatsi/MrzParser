@@ -59,7 +59,7 @@ abstract class AbstractParser
         $document = (new Document)
             ->setMrzType(self::getMrzType())
             ->setDocumentCode($result['documentCode'])
-            ->setCountryOfIssue($result['countryOfIssue'])
+            ->setIssuingStateOrOrganization($result['issuingStateOrOrganization'])
             ->setPrimaryIdentifier($result['primaryIdentifier'])
             ->setSecondaryIdentifier($result['secondaryIdentifier'])
             ->setDocumentNumber($result['documentNumber'])

@@ -30,17 +30,17 @@ class DocumentTest extends TestCase
                 "9007138F3002119FRA<<<<<<<<<<<6\n" .
                 'MARTIN<<MAELYS<GAELLE<MARIE<<<',
                 [
-                    'mrzType'             => MrzType::TD1,
-                    'documentCode'        => 'ID',
-                    'countryOfIssue'      => 'FRA',
-                    'primaryIdentifier'   => 'MARTIN',
-                    'secondaryIdentifier' => 'MAELYS GAELLE MARIE',
-                    'documentNumber'      => 'X4RTBPFW4',
-                    'nationality'         => 'FRA',
-                    'dateOfBirth'         => '900713',
-                    'sex'                 => 'F',
-                    'dateOfExpiry'        => '300211',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::TD1,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'MARTIN',
+                    'secondaryIdentifier'        => 'MAELYS GAELLE MARIE',
+                    'documentNumber'             => 'X4RTBPFW4',
+                    'nationality'                => 'FRA',
+                    'dateOfBirth'                => '900713',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '300211',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 6,
                             'calculated' => 6,
@@ -69,17 +69,17 @@ class DocumentTest extends TestCase
                 "8308126<3108011D<<2108<<<<<<<5\n" .
                 'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
                 [
-                    'mrzType'             => MrzType::TD1,
-                    'documentCode'        => 'ID',
-                    'countryOfIssue'      => 'D',
-                    'primaryIdentifier'   => 'MUSTERMANN',
-                    'secondaryIdentifier' => 'ERIKA',
-                    'documentNumber'      => 'L01XPVM8J',
-                    'nationality'         => 'D',
-                    'dateOfBirth'         => '830812',
-                    'sex'                 => null,
-                    'dateOfExpiry'        => '310801',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::TD1,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'D',
+                    'primaryIdentifier'          => 'MUSTERMANN',
+                    'secondaryIdentifier'        => 'ERIKA',
+                    'documentNumber'             => 'L01XPVM8J',
+                    'nationality'                => 'D',
+                    'dateOfBirth'                => '830812',
+                    'sex'                        => null,
+                    'dateOfExpiry'               => '310801',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 2,
                             'calculated' => 2,
@@ -107,17 +107,17 @@ class DocumentTest extends TestCase
                 "ITD<<MUSTERMANN<<ERIKA<<<<<<<<<<<<<<\n" .
                 'C<00000004D<<6408125F0404011<<<<<<<4',
                 [
-                    'mrzType'             => MrzType::TD2,
-                    'documentCode'        => 'IT',
-                    'countryOfIssue'      => 'D',
-                    'primaryIdentifier'   => 'MUSTERMANN',
-                    'secondaryIdentifier' => 'ERIKA',
-                    'documentNumber'      => 'C 0000000',
-                    'nationality'         => 'D',
-                    'dateOfBirth'         => '640812',
-                    'sex'                 => 'F',
-                    'dateOfExpiry'        => '040401',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::TD2,
+                    'documentCode'               => 'IT',
+                    'issuingStateOrOrganization' => 'D',
+                    'primaryIdentifier'          => 'MUSTERMANN',
+                    'secondaryIdentifier'        => 'ERIKA',
+                    'documentNumber'             => 'C 0000000',
+                    'nationality'                => 'D',
+                    'dateOfBirth'                => '640812',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '040401',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 4,
                             'calculated' => 4,
@@ -145,17 +145,17 @@ class DocumentTest extends TestCase
                 "P<ESPESPANOLA<ESPANOLA<<CARMEN<<<<<<<<<<<<<<\n" .
                 'ZAB0002549ESP8001014F2501017A9999999900<<<44',
                 [
-                    'mrzType'             => MrzType::TD3,
-                    'documentCode'        => 'P',
-                    'countryOfIssue'      => 'ESP',
-                    'primaryIdentifier'   => 'ESPANOLA ESPANOLA',
-                    'secondaryIdentifier' => 'CARMEN',
-                    'documentNumber'      => 'ZAB000254',
-                    'nationality'         => 'ESP',
-                    'dateOfBirth'         => '800101',
-                    'sex'                 => 'F',
-                    'dateOfExpiry'        => '250101',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::TD3,
+                    'documentCode'               => 'P',
+                    'issuingStateOrOrganization' => 'ESP',
+                    'primaryIdentifier'          => 'ESPANOLA ESPANOLA',
+                    'secondaryIdentifier'        => 'CARMEN',
+                    'documentNumber'             => 'ZAB000254',
+                    'nationality'                => 'ESP',
+                    'dateOfBirth'                => '800101',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '250101',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 9,
                             'calculated' => 9,
@@ -183,17 +183,17 @@ class DocumentTest extends TestCase
                 "VNUSAHAPPY<<TRAVELER<<<<<<<<<<<<<<<<<<<<<<<<\n" .
                 '0000000<<0CYP0001018M1601231B2NCS00E0F060308',
                 [
-                    'mrzType'             => MrzType::VA,
-                    'documentCode'        => 'VN',
-                    'countryOfIssue'      => 'USA',
-                    'primaryIdentifier'   => 'HAPPY',
-                    'secondaryIdentifier' => 'TRAVELER',
-                    'documentNumber'      => '0000000',
-                    'nationality'         => 'CYP',
-                    'dateOfBirth'         => '000101',
-                    'sex'                 => 'M',
-                    'dateOfExpiry'        => '160123',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::VA,
+                    'documentCode'               => 'VN',
+                    'issuingStateOrOrganization' => 'USA',
+                    'primaryIdentifier'          => 'HAPPY',
+                    'secondaryIdentifier'        => 'TRAVELER',
+                    'documentNumber'             => '0000000',
+                    'nationality'                => 'CYP',
+                    'dateOfBirth'                => '000101',
+                    'sex'                        => 'M',
+                    'dateOfExpiry'               => '160123',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 0,
                             'calculated' => 0,
@@ -216,17 +216,17 @@ class DocumentTest extends TestCase
                 "VEFRAWANG<<YI<CHENG<<<<<<<<<<<<<<<<<\n" .
                 '1234567897CHN8001014M1909155<M900618',
                 [
-                    'mrzType'             => MrzType::VB,
-                    'documentCode'        => 'VE',
-                    'countryOfIssue'      => 'FRA',
-                    'primaryIdentifier'   => 'WANG',
-                    'secondaryIdentifier' => 'YI CHENG',
-                    'documentNumber'      => '123456789',
-                    'nationality'         => 'CHN',
-                    'dateOfBirth'         => '800101',
-                    'sex'                 => 'M',
-                    'dateOfExpiry'        => '190915',
-                    'checkDigits'         => [
+                    'mrzType'                    => MrzType::VB,
+                    'documentCode'               => 'VE',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'WANG',
+                    'secondaryIdentifier'        => 'YI CHENG',
+                    'documentNumber'             => '123456789',
+                    'nationality'                => 'CHN',
+                    'dateOfBirth'                => '800101',
+                    'sex'                        => 'M',
+                    'dateOfExpiry'               => '190915',
+                    'checkDigits'                => [
                         'documentNumber' => [
                             'value'      => 7,
                             'calculated' => 7,

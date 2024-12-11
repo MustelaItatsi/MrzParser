@@ -13,7 +13,7 @@ use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
  * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{value:int,calculated:int,isValid:bool}>
- * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
+ * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,issuingStateOrOrganization:string,
  * primaryIdentifier:string,secondaryIdentifier:string,documentNumber:string,nationality:string,
  * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}
  */
@@ -33,7 +33,7 @@ interface DocumentInterface
      *
      * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
      */
-    public function getCountryOfIssue(): string;
+    public function getIssuingStateOrOrganization(): string;
 
     /**
      * Keep in mind, that names can be croped.
