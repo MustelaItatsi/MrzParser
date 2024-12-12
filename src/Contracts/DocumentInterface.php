@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -46,12 +46,12 @@ interface DocumentInterface
     public function getIssuingStateOrOrganization(): string;
 
     /**
-     * (e.g., surname. Names may be croped.
+     * (e.g., surname. Names may be cropped.
      */
     public function getPrimaryIdentifier(): string;
 
     /**
-     * e.g., given names. Names may be croped.
+     * e.g., given names. Names may be cropped.
      */
     public function getSecondaryIdentifier(): string;
 

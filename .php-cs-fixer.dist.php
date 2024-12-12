@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -12,7 +12,7 @@ use PhpCsFixer\Finder;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $header = <<<'EOF'
-This file is part of mrz-parser.
+This file is part of MrzParser.
 
 (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -10,7 +10,7 @@
 namespace MustelaItatsi\MrzParser;
 
 use function count;
-use function strlen;
+use function str_split;
 use function substr;
 
 /**
