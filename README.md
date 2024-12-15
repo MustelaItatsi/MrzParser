@@ -26,18 +26,18 @@ composer require mustelaitatsi/mrzparser
 require 'vendor/autoload.php';
 $mrz = 'I<UTOD231458907<<<<<<<<<<<<<<<7408122F1204159UTO<<<<<<<<<<<6ERIKSSON<<ANNA<MARIA<<<<<<<<<<';
 $document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
-[
-'mrzType'                    => MustelaItatsi\MrzParser\Enums\MrzType::TD1,
-'documentCode'               => 'I',
-'issuingStateOrOrganization' => 'UTO',
-'primaryIdentifier'          => 'ERIKSSON',
-'secondaryIdentifier'        => 'ANNA MARIA',
-'documentNumber'             => 'D23145890',
-'nationality'                => 'UTO',
-'dateOfBirth'                => '740812',
-'sex'                        => 'F',
-'dateOfExpiry'               => '120415',
-'checkDigits'                => [
+
+$document->getMrzType()                    => MustelaItatsi\MrzParser\Enums\MrzType::TD1,
+$document->getDocumentCode()               => 'I',
+$document->getIssuingStateOrOrganization() => 'UTO',
+$document->getPrimaryIdentifier()          => 'ERIKSSON',
+$document->getSecondaryIdentifier()        => 'ANNA MARIA',
+$document->getDocumentNumber()             => 'D23145890',
+$document->getNationality()                => 'UTO',
+$document->getDateOfBirth()                => '740812',
+$document->getSex()                        => 'F',
+$document->getDateOfExpiry()               => '120415',
+$document->getCheckDigits()                => [
     'documentNumber' => [
         'value'      => 7,
         'calculated' => 7,
@@ -58,8 +58,7 @@ $document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
         'calculated' => 6,
         'isValid'    => true,
     ],
-],
-];
+]
 ```
 
 ## Testing

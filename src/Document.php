@@ -20,7 +20,6 @@ use MustelaItatsi\MrzParser\Parsers\VisaTypeB;
 
 /**
  * @phpstan-import-type CheckDigits from DocumentInterface
- * @phpstan-import-type DocumentArray from DocumentInterface
  */
 class Document implements DocumentInterface
 {
@@ -177,28 +176,6 @@ class Document implements DocumentInterface
         $this->dateOfExpiry = $dateOfExpiry;
 
         return $this;
-    }
-
-    /**
-     * @return DocumentArray
-     */
-    public function toArray(): array
-    {
-        $result = [
-            'mrzType'                    => $this->getMrzType(),
-            'documentCode'               => $this->getDocumentCode(),
-            'issuingStateOrOrganization' => $this->getIssuingStateOrOrganization(),
-            'primaryIdentifier'          => $this->getPrimaryIdentifier(),
-            'secondaryIdentifier'        => $this->getSecondaryIdentifier(),
-            'documentNumber'             => $this->getDocumentNumber(),
-            'nationality'                => $this->getNationality(),
-            'dateOfBirth'                => $this->getDateOfBirth(),
-            'sex'                        => $this->getSex(),
-            'dateOfExpiry'               => $this->getDateOfExpiry(),
-        ];
-        $result['checkDigits'] = $this->getCheckDigits();
-
-        return $result;
     }
 
     /**

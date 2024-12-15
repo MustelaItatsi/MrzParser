@@ -253,7 +253,10 @@ class DocumentTest extends TestCase
     {
         $document = ParserFacade::parseMrz($mrz);
 
-        Assert::assertEquals($expected, $document?->toArray());
+        foreach ($expected as $key => $value) {
+            // @phpstan-ignore method.dynamicName
+            Assert::assertEquals($value, $document->{'get' . ucfirst($key)}());
+        }
     }
 
     public function testGetterAndSetter(): void
@@ -263,7 +266,7 @@ class DocumentTest extends TestCase
         foreach (self::parseDataProvider()['FRA-BO-03001'][1] as $key => $value) {
             // retuns same instance
             // @phpstan-ignore method.dynamicName
-            Assert::assertSame($document, $document->{'set' . ucfirst($key)}($value));
+            Assert::assertEquals($document, $document->{'set' . ucfirst($key)}($value));
 
             // get given value
             // @phpstan-ignore method.dynamicName

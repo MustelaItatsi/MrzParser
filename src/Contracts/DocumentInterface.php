@@ -13,19 +13,6 @@ use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
  * @phpstan-type CheckDigits array<'overall'|'dateOfBirth'|'dateOfExpiry'|'documentNumber', array{extracted:int,calculated:int,isValid:bool}>
- * @phpstan-type DocumentArray array{
- *     mrzType:MrzType,
- *     documentCode:string,
- *     issuingStateOrOrganization:string,
- *     primaryIdentifier:string,
- *     secondaryIdentifier:string,
- *     documentNumber:string,
- *     nationality:string,
- *     dateOfBirth:string,
- *     sex:?string,
- *     dateOfExpiry:string,
- *     checkDigits:CheckDigits
- * }
  */
 interface DocumentInterface
 {
@@ -35,13 +22,13 @@ interface DocumentInterface
      * Get the document code.
      * Typically starts with I (ID card), P (passport), A (residence permit),
      * or V (visa). Some countries may use other codes.
-     *
-     * @see ICAO Doc 9303 Part 3 Section 4
      */
     public function getDocumentCode(): string;
 
     /**
-     * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
+     * three-letter codes (per ICAO Doc 9303 Part 3 Section 4.7).
+     *
+     * @see ICAO Doc 9303 Part 3 Section 5
      */
     public function getIssuingStateOrOrganization(): string;
 
@@ -58,21 +45,21 @@ interface DocumentInterface
     public function getDocumentNumber(): string;
 
     /**
-     * Nationality or special code.
+     * three-letter codes (per ICAO Doc 9303 Part 3 Section 4.7).
      *
-     * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
+     * @see ICAO Doc 9303 Part 3 Section 5
      */
     public function getNationality(): string;
 
     /**
-     * in YYMMDD format.
+     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfBirth(): string;
 
     public function getSex(): ?string;
 
     /**
-     * in YYMMDD format.
+     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfExpiry(): string;
 
@@ -82,11 +69,4 @@ interface DocumentInterface
      * @return CheckDigits
      */
     public function getCheckDigits(): array;
-
-    /**
-     * Convert the document to an associative array.
-     *
-     * @return DocumentArray
-     */
-    public function toArray(): array;
 }
