@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -30,215 +30,221 @@ class DocumentTest extends TestCase
                 "9007138F3002119FRA<<<<<<<<<<<6\n" .
                 'MARTIN<<MAELYS<GAELLE<MARIE<<<',
                 [
-                    'mrzType'        => MrzType::TD1,
-                    'documentCode'   => 'ID',
-                    'countryOfIssue' => 'FRA',
-                    'surname'        => 'MARTIN',
-                    'givenNames'     => 'MAELYS GAELLE MARIE',
-                    'documentNumber' => 'X4RTBPFW4',
-                    'nationality'    => 'FRA',
-                    'dateOfBirth'    => '900713',
-                    'sex'            => 'F',
-                    'dateOfExpiry'   => '300211',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::TD1,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'MARTIN',
+                    'secondaryIdentifier'        => 'MAELYS GAELLE MARIE',
+                    'documentNumber'             => 'X4RTBPFW4',
+                    'nationality'                => 'FRA',
+                    'dateOfBirth'                => '900713',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '300211',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 6,
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 8,
+                            'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 9,
+                            'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
-                            'value'      => 6,
+                        'overall' => [
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
             'DEU-BO-02004' => [
                 "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
                 "8308126<3108011D<<2108<<<<<<<5\n" .
                 'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
                 [
-                    'mrzType'        => MrzType::TD1,
-                    'documentCode'   => 'ID',
-                    'countryOfIssue' => 'D',
-                    'surname'        => 'MUSTERMANN',
-                    'givenNames'     => 'ERIKA',
-                    'documentNumber' => 'L01XPVM8J',
-                    'nationality'    => 'D',
-                    'dateOfBirth'    => '830812',
-                    'sex'            => null,
-                    'dateOfExpiry'   => '310801',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::TD1,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'D',
+                    'primaryIdentifier'          => 'MUSTERMANN',
+                    'secondaryIdentifier'        => 'ERIKA',
+                    'documentNumber'             => 'L01XPVM8J',
+                    'nationality'                => 'D',
+                    'dateOfBirth'                => '830812',
+                    'sex'                        => null,
+                    'dateOfExpiry'               => '310801',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 2,
+                            'extracted'  => 2,
                             'calculated' => 2,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 6,
+                            'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
-                            'value'      => 5,
+                        'overall' => [
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
             'DEU-BP-03001' => [
                 "ITD<<MUSTERMANN<<ERIKA<<<<<<<<<<<<<<\n" .
                 'C<00000004D<<6408125F0404011<<<<<<<4',
                 [
-                    'mrzType'        => MrzType::TD2,
-                    'documentCode'   => 'IT',
-                    'countryOfIssue' => 'D',
-                    'surname'        => 'MUSTERMANN',
-                    'givenNames'     => 'ERIKA',
-                    'documentNumber' => 'C 0000000',
-                    'nationality'    => 'D',
-                    'dateOfBirth'    => '640812',
-                    'sex'            => 'F',
-                    'dateOfExpiry'   => '040401',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::TD2,
+                    'documentCode'               => 'IT',
+                    'issuingStateOrOrganization' => 'D',
+                    'primaryIdentifier'          => 'MUSTERMANN',
+                    'secondaryIdentifier'        => 'ERIKA',
+                    'documentNumber'             => 'C 0000000',
+                    'nationality'                => 'D',
+                    'dateOfBirth'                => '640812',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '040401',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 5,
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
-                            'value'      => 4,
+                        'overall' => [
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
             'ESP-AO-05001' => [
                 "P<ESPESPANOLA<ESPANOLA<<CARMEN<<<<<<<<<<<<<<\n" .
                 'ZAB0002549ESP8001014F2501017A9999999900<<<44',
                 [
-                    'mrzType'        => MrzType::TD3,
-                    'documentCode'   => 'P',
-                    'countryOfIssue' => 'ESP',
-                    'surname'        => 'ESPANOLA ESPANOLA',
-                    'givenNames'     => 'CARMEN',
-                    'documentNumber' => 'ZAB000254',
-                    'nationality'    => 'ESP',
-                    'dateOfBirth'    => '800101',
-                    'sex'            => 'F',
-                    'dateOfExpiry'   => '250101',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::TD3,
+                    'documentCode'               => 'P',
+                    'issuingStateOrOrganization' => 'ESP',
+                    'primaryIdentifier'          => 'ESPANOLA ESPANOLA',
+                    'secondaryIdentifier'        => 'CARMEN',
+                    'documentNumber'             => 'ZAB000254',
+                    'nationality'                => 'ESP',
+                    'dateOfBirth'                => '800101',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '250101',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 9,
+                            'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 7,
+                            'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
-                        'combinedCheckDigit' => [
-                            'value'      => 4,
+                        'overall' => [
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
             'USA-CO-01001' => [
                 "VNUSAHAPPY<<TRAVELER<<<<<<<<<<<<<<<<<<<<<<<<\n" .
                 '0000000<<0CYP0001018M1601231B2NCS00E0F060308',
                 [
-                    'mrzType'        => MrzType::VA,
-                    'documentCode'   => 'VN',
-                    'countryOfIssue' => 'USA',
-                    'surname'        => 'HAPPY',
-                    'givenNames'     => 'TRAVELER',
-                    'documentNumber' => '0000000',
-                    'nationality'    => 'CYP',
-                    'dateOfBirth'    => '000101',
-                    'sex'            => 'M',
-                    'dateOfExpiry'   => '160123',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::VA,
+                    'documentCode'               => 'VN',
+                    'issuingStateOrOrganization' => 'USA',
+                    'primaryIdentifier'          => 'HAPPY',
+                    'secondaryIdentifier'        => 'TRAVELER',
+                    'documentNumber'             => '0000000',
+                    'nationality'                => 'CYP',
+                    'dateOfBirth'                => '000101',
+                    'sex'                        => 'M',
+                    'dateOfExpiry'               => '160123',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 0,
+                            'extracted'  => 0,
                             'calculated' => 0,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 8,
+                            'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 1,
+                            'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
             'FRA-CO-03001' => [
                 "VEFRAWANG<<YI<CHENG<<<<<<<<<<<<<<<<<\n" .
                 '1234567897CHN8001014M1909155<M900618',
                 [
-                    'mrzType'        => MrzType::VB,
-                    'documentCode'   => 'VE',
-                    'countryOfIssue' => 'FRA',
-                    'surname'        => 'WANG',
-                    'givenNames'     => 'YI CHENG',
-                    'documentNumber' => '123456789',
-                    'nationality'    => 'CHN',
-                    'dateOfBirth'    => '800101',
-                    'sex'            => 'M',
-                    'dateOfExpiry'   => '190915',
-                    'checkDigits'    => [
+                    'mrzType'                    => MrzType::VB,
+                    'documentCode'               => 'VE',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'WANG',
+                    'secondaryIdentifier'        => 'YI CHENG',
+                    'documentNumber'             => '123456789',
+                    'nationality'                => 'CHN',
+                    'dateOfBirth'                => '800101',
+                    'sex'                        => 'M',
+                    'dateOfExpiry'               => '190915',
+                    'checkDigits'                => [
                         'documentNumber' => [
-                            'value'      => 7,
+                            'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
                         'dateOfBirth' => [
-                            'value'      => 4,
+                            'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
                         'dateOfExpiry' => [
-                            'value'      => 5,
+                            'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
                     ],
-                ]],
+                ],
+            ],
         ];
     }
 
@@ -247,7 +253,10 @@ class DocumentTest extends TestCase
     {
         $document = ParserFacade::parseMrz($mrz);
 
-        Assert::assertEquals($expected, $document?->toArray());
+        foreach ($expected as $key => $value) {
+            // @phpstan-ignore method.dynamicName
+            Assert::assertEquals($value, $document->{'get' . ucfirst($key)}());
+        }
     }
 
     public function testGetterAndSetter(): void
@@ -257,7 +266,7 @@ class DocumentTest extends TestCase
         foreach (self::parseDataProvider()['FRA-BO-03001'][1] as $key => $value) {
             // retuns same instance
             // @phpstan-ignore method.dynamicName
-            Assert::assertSame($document, $document->{'set' . ucfirst($key)}($value));
+            Assert::assertEquals($document, $document->{'set' . ucfirst($key)}($value));
 
             // get given value
             // @phpstan-ignore method.dynamicName

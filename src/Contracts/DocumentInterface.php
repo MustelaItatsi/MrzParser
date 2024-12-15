@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -12,10 +12,7 @@ namespace MustelaItatsi\MrzParser\Contracts;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
- * @phpstan-type CheckDigits array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{value:int,calculated:int,isValid:bool}>
- * @phpstan-type DocumentArray array{mrzType:MrzType,documentCode:string,countryOfIssue:string,
- * surname:string,givenNames:string,documentNumber:string,nationality:string,
- * dateOfBirth:string,sex:?string,dateOfExpiry:string,checkDigits:CheckDigits}
+ * @phpstan-type CheckDigits array<'overall'|'dateOfBirth'|'dateOfExpiry'|'documentNumber', array{extracted:int,calculated:int,isValid:bool}>
  */
 interface DocumentInterface
 {
@@ -23,62 +20,53 @@ interface DocumentInterface
 
     /**
      * Get the document code.
-     * Starts normaly with I(id card), P(passport), A(residence permit),
-     * or V(visa), but some counties make a lot af magic with it...
-     * See IR on FRA-HO-12001. Send me a mail if someone finds a definition.
+     * Typically starts with I (ID card), P (passport), A (residence permit),
+     * or V (visa). Some countries may use other codes.
      */
     public function getDocumentCode(): string;
 
     /**
-     * Country or organizations of issue.
+     * three-letter codes (per ICAO Doc 9303 Part 3 Section 4.7).
      *
-     * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
+     * @see ICAO Doc 9303 Part 3 Section 5
      */
-    public function getCountryOfIssue(): string;
+    public function getIssuingStateOrOrganization(): string;
 
     /**
-     * Get the surname. Keep in mind, that names can be croped. lastname.
+     * (e.g., surname. Names may be cropped.
      */
-    public function getSurname(): string;
+    public function getPrimaryIdentifier(): string;
 
     /**
-     * Get the given names. Keep in mind, that names can be croped. firstname.
+     * e.g., given names. Names may be cropped.
      */
-    public function getGivenNames(): string;
+    public function getSecondaryIdentifier(): string;
 
     public function getDocumentNumber(): string;
 
     /**
-     * Nationality or special code.
+     * three-letter codes (per ICAO Doc 9303 Part 3 Section 4.7).
      *
-     * @see https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf#page=29
+     * @see ICAO Doc 9303 Part 3 Section 5
      */
     public function getNationality(): string;
 
     /**
-     * in datetime format ymd.
+     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfBirth(): string;
 
-    /**
-     * sex, if available.
-     */
     public function getSex(): ?string;
 
     /**
-     * in datetime format ymd.
+     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfExpiry(): string;
 
     /**
+     * Get the check digits for the document fields.
+     *
      * @return CheckDigits
      */
     public function getCheckDigits(): array;
-
-    /**
-     * Convert the document to an associative array. Keep in mind, that this list can be extended anytime!
-     *
-     * @return DocumentArray
-     */
-    public function toArray(): array;
 }

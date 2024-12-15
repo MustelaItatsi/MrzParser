@@ -26,50 +26,39 @@ composer require mustelaitatsi/mrzparser
 require 'vendor/autoload.php';
 $mrz = 'I<UTOD231458907<<<<<<<<<<<<<<<7408122F1204159UTO<<<<<<<<<<<6ERIKSSON<<ANNA<MARIA<<<<<<<<<<';
 $document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
-Array
-(
-    [mrzType] => MustelaItatsi\MrzParser\Enums\MrzType Enum
-        (
-            [name] => TD1
-        )
 
-    [documentCode] => I
-    [countryOfIssue] => UTO
-    [surname] => ERIKSSON
-    [givenNames] => ANNA MARIA
-    [documentNumber] => D23145890
-    [nationality] => UTO
-    [dateOfBirth] => 740812
-    [sex] => F
-    [dateOfExpiry] => 120415
-    [checkDigits] => Array
-        (
-            [documentNumber] => Array
-                (
-                    [value] => 7
-                    [calculated] => 7
-                    [isValid] => 1
-                )
-            [dateOfBirth] => Array
-                (
-                    [value] => 2
-                    [calculated] => 2
-                    [isValid] => 1
-                )
-            [dateOfExpiry] => Array
-                (
-                    [value] => 9
-                    [calculated] => 9
-                    [isValid] => 1
-                )
-            [combinedCheckDigit] => Array
-                (
-                    [value] => 6
-                    [calculated] => 6
-                    [isValid] => 1
-                )
-        )
-)
+$document->getMrzType()                    => MustelaItatsi\MrzParser\Enums\MrzType::TD1,
+$document->getDocumentCode()               => 'I',
+$document->getIssuingStateOrOrganization() => 'UTO',
+$document->getPrimaryIdentifier()          => 'ERIKSSON',
+$document->getSecondaryIdentifier()        => 'ANNA MARIA',
+$document->getDocumentNumber()             => 'D23145890',
+$document->getNationality()                => 'UTO',
+$document->getDateOfBirth()                => '740812',
+$document->getSex()                        => 'F',
+$document->getDateOfExpiry()               => '120415',
+$document->getCheckDigits()                => [
+    'documentNumber' => [
+        'value'      => 7,
+        'calculated' => 7,
+        'isValid'    => true,
+    ],
+    'dateOfBirth' => [
+        'value'      => 2,
+        'calculated' => 2,
+        'isValid'    => true,
+    ],
+    'dateOfExpiry' => [
+        'value'      => 9,
+        'calculated' => 9,
+        'isValid'    => true,
+    ],
+    'overall' => [
+        'value'      => 6,
+        'calculated' => 6,
+        'isValid'    => true,
+    ],
+]
 ```
 
 ## Testing

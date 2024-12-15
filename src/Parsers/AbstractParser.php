@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -30,7 +30,7 @@ abstract class AbstractParser
     protected const MRZTYPE    = MrzType::TD1;
 
     /**
-     * @var array<'combinedCheckDigit'|'dateOfBirth'|'dateOfExpiry'|'documentNumber',array{ranges:MrzRange[],checkDigitOffset:int}>
+     * @var array<'dateOfBirth'|'dateOfExpiry'|'documentNumber'|'overall',array{ranges:MrzRange[],checkDigitOffset:int}>
      */
     protected static array $checkDigits = [];
 
@@ -49,7 +49,7 @@ abstract class AbstractParser
         foreach (static::FIELD_POS as $key => $value) {
             $result[$key] = substr($mrz, ...$value);
         }
-        [$result['surname'], $result['givenNames']] = explode('<<', $result['fullName']);
+        [$result['primaryIdentifier'], $result['secondaryIdentifier']] = explode('<<', $result['fullName']);
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
@@ -59,9 +59,9 @@ abstract class AbstractParser
         $document = (new Document)
             ->setMrzType(self::getMrzType())
             ->setDocumentCode($result['documentCode'])
-            ->setCountryOfIssue($result['countryOfIssue'])
-            ->setSurname($result['surname'])
-            ->setGivenNames($result['givenNames'])
+            ->setIssuingStateOrOrganization($result['issuingStateOrOrganization'])
+            ->setPrimaryIdentifier($result['primaryIdentifier'])
+            ->setSecondaryIdentifier($result['secondaryIdentifier'])
             ->setDocumentNumber($result['documentNumber'])
             ->setNationality($result['nationality'])
             ->setDateOfBirth($result['dateOfBirth'])
@@ -72,7 +72,7 @@ abstract class AbstractParser
         foreach (static::$checkDigits as $key => $checkDigitConfig) {
             $checkDigit            = new CheckDigit(...$checkDigitConfig);
             $checkDigitArray[$key] = [
-                'value'      => $checkDigit->getCheckDigitFromMrz($mrz),
+                'extracted'  => $checkDigit->getCheckDigitFromMrz($mrz),
                 'calculated' => $checkDigit->calculateCheckDigit($mrz),
                 'isValid'    => $checkDigit->isCheckDigitValidInMrz($mrz),
             ];

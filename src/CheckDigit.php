@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of mrz-parser.
+ * This file is part of MrzParser.
  *
  * (c) Alexander Herrmann <alexander-herrmann@hotmail.com>
  *
@@ -10,7 +10,7 @@
 namespace MustelaItatsi\MrzParser;
 
 use function count;
-use function strlen;
+use function str_split;
 use function substr;
 
 /**
@@ -66,28 +66,17 @@ class CheckDigit
         return $result;
     }
 
-    private static function calcCheckDigit(string $str): int
+    private static function calcCheckDigit(string $input): int
     {
-        // from https://github.com/tetrahydra/SolidusMRZ/blob/master/mrz.php#L480
-        $nmbrs     = [];
-        $weighting = [7, 3, 1];
+        $weights = [7, 3, 1];
+        $sum     = 0;
 
-        for ($i = 0; $i < strlen($str); $i++) {
-            $nmbrs[] = self::$characterValues[$str[$i]];
+        foreach (str_split($input) as $index => $char) {
+            $value  = self::$characterValues[$char];
+            $weight = $weights[$index % count($weights)];
+            $sum += $value * $weight;
         }
 
-        $curWeight = 0;
-        $total     = 0;
-
-        for ($j = 0; $j < count($nmbrs); $j++) {
-            $total += $nmbrs[$j] * $weighting[$curWeight];
-            $curWeight++;
-
-            if ($curWeight === 3) {
-                $curWeight = 0;
-            }
-        }
-
-        return $total % 10;
+        return $sum % 10;
     }
 }
