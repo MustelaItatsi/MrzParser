@@ -25,7 +25,7 @@ class DocumentTest extends TestCase
     public static function parseDataProvider(): array
     {
         return [
-            'FRA-BO-03001' => [
+            'FRA-BO-03001 with TD1' => [
                 "IDFRAX4RTBPFW46<<<<<<<<<<<<<<<\n" .
                 "9007138F3002119FRA<<<<<<<<<<<6\n" .
                 'MARTIN<<MAELYS<GAELLE<MARIE<<<',
@@ -64,7 +64,7 @@ class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'DEU-BO-02004' => [
+            'DEU-BO-02004 with TD1' => [
                 "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
                 "8308126<3108011D<<2108<<<<<<<5\n" .
                 'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
@@ -103,7 +103,7 @@ class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'DEU-BP-03001' => [
+            'DEU-BP-03001 with TD2' => [
                 "ITD<<MUSTERMANN<<ERIKA<<<<<<<<<<<<<<\n" .
                 'C<00000004D<<6408125F0404011<<<<<<<4',
                 [
@@ -141,7 +141,7 @@ class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'ESP-AO-05001' => [
+            'ESP-AO-05001 with TD3' => [
                 "P<ESPESPANOLA<ESPANOLA<<CARMEN<<<<<<<<<<<<<<\n" .
                 'ZAB0002549ESP8001014F2501017A9999999900<<<44',
                 [
@@ -179,7 +179,7 @@ class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'USA-CO-01001' => [
+            'USA-CO-01001 with VA' => [
                 "VNUSAHAPPY<<TRAVELER<<<<<<<<<<<<<<<<<<<<<<<<\n" .
                 '0000000<<0CYP0001018M1601231B2NCS00E0F060308',
                 [
@@ -212,7 +212,7 @@ class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'FRA-CO-03001' => [
+            'FRA-CO-03001 with VB' => [
                 "VEFRAWANG<<YI<CHENG<<<<<<<<<<<<<<<<<\n" .
                 '1234567897CHN8001014M1909155<M900618',
                 [
@@ -270,7 +270,7 @@ class DocumentTest extends TestCase
     {
         $document = new Document;
 
-        foreach (self::parseDataProvider()['FRA-BO-03001'][1] as $key => $value) {
+        foreach (self::parseDataProvider()['FRA-BO-03001 with TD1'][1] as $key => $value) {
             // retuns same instance
             // @phpstan-ignore method.dynamicName
             Assert::assertEquals($document, $document->{'set' . ucfirst($key)}($value));
