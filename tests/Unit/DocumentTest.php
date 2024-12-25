@@ -259,6 +259,13 @@ class DocumentTest extends TestCase
         }
     }
 
+    public function testUnsupportedMrzReturnsNull(): void
+    {
+        $document = ParserFacade::parseMrz('Not a MRZ');
+
+        Assert::assertNull($document);
+    }
+
     public function testGetterAndSetter(): void
     {
         $document = new Document;
