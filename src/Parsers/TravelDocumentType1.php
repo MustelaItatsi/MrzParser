@@ -10,6 +10,7 @@
 namespace MustelaItatsi\MrzParser\Parsers;
 
 use MustelaItatsi\MrzParser\Contracts\ParserInterface;
+use MustelaItatsi\MrzParser\Enums\CheckDigitType;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 class TravelDocumentType1 extends AbstractParser implements ParserInterface
@@ -28,10 +29,10 @@ class TravelDocumentType1 extends AbstractParser implements ParserInterface
         'dateOfExpiry'               => ['offset' => 38, 'length' => 6],
     ];
     protected static array $checkDigits = [
-        'documentNumber' => ['ranges' => [['offset' => 5, 'length' => 9]], 'checkDigitOffset' => 14],
-        'dateOfBirth'    => ['ranges' => [['offset' => 30, 'length' => 6]], 'checkDigitOffset' => 30 + 6],
-        'dateOfExpiry'   => ['ranges' => [['offset' => 30 + 8, 'length' => 6]], 'checkDigitOffset' => 30 + 14],
-        'overall'        => ['ranges' => [
+        CheckDigitType::DOCUMENT_NUMBER => ['ranges' => [['offset' => 5, 'length' => 9]], 'checkDigitOffset' => 14],
+        CheckDigitType::DATE_OF_BIRTH   => ['ranges' => [['offset' => 30, 'length' => 6]], 'checkDigitOffset' => 30 + 6],
+        CheckDigitType::DATE_OF_EXPIRY  => ['ranges' => [['offset' => 30 + 8, 'length' => 6]], 'checkDigitOffset' => 30 + 14],
+        CheckDigitType::OVERALL         => ['ranges' => [
             ['offset' => 5, 'length' => 25],
             ['offset' => 30, 'length' => 7],
             ['offset' => 30 + 8, 'length' => 7],

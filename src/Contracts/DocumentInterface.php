@@ -9,10 +9,11 @@
  */
 namespace MustelaItatsi\MrzParser\Contracts;
 
+use MustelaItatsi\MrzParser\Enums\CheckDigitType;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
- * @phpstan-type CheckDigits array<'overall'|'dateOfBirth'|'dateOfExpiry'|'documentNumber', array{extracted:int,calculated:int,isValid:bool}>
+ * @phpstan-type CheckDigits array<CheckDigitType::*, array{extracted:int,calculated:int,isValid:bool}>
  */
 interface DocumentInterface
 {
