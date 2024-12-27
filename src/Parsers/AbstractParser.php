@@ -16,6 +16,7 @@ use function substr;
 use function trim;
 use MustelaItatsi\MrzParser\CheckDigit;
 use MustelaItatsi\MrzParser\Document;
+use MustelaItatsi\MrzParser\Enums\CheckDigitType;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
 /**
@@ -30,7 +31,7 @@ abstract class AbstractParser
     protected const MRZTYPE    = MrzType::TD1;
 
     /**
-     * @var array<'dateOfBirth'|'dateOfExpiry'|'documentNumber'|'overall',array{ranges:MrzRange[],checkDigitOffset:int}>
+     * @var array<CheckDigitType::*,array{ranges:MrzRange[],checkDigitOffset:int}>
      */
     protected static array $checkDigits = [];
 

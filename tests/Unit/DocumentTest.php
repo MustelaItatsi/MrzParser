@@ -11,6 +11,7 @@ namespace MustelaItatsi\MrzParser\Tests\Unit;
 
 use function ucfirst;
 use MustelaItatsi\MrzParser\Document;
+use MustelaItatsi\MrzParser\Enums\CheckDigitType;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 use MustelaItatsi\MrzParser\Facades\ParserFacade;
 use PHPUnit\Framework\Assert;
@@ -41,22 +42,22 @@ final class DocumentTest extends TestCase
                     'sex'                        => 'F',
                     'dateOfExpiry'               => '300211',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
-                        'overall' => [
+                        CheckDigitType::OVERALL => [
                             'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
@@ -80,22 +81,22 @@ final class DocumentTest extends TestCase
                     'sex'                        => null,
                     'dateOfExpiry'               => '310801',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 2,
                             'calculated' => 2,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 6,
                             'calculated' => 6,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'overall' => [
+                        CheckDigitType::OVERALL => [
                             'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
@@ -118,22 +119,22 @@ final class DocumentTest extends TestCase
                     'sex'                        => 'F',
                     'dateOfExpiry'               => '040401',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
                         ],
-                        'overall' => [
+                        CheckDigitType::OVERALL => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
@@ -156,22 +157,22 @@ final class DocumentTest extends TestCase
                     'sex'                        => 'F',
                     'dateOfExpiry'               => '250101',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 9,
                             'calculated' => 9,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
-                        'overall' => [
+                        CheckDigitType::OVERALL => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
@@ -194,17 +195,17 @@ final class DocumentTest extends TestCase
                     'sex'                        => 'M',
                     'dateOfExpiry'               => '160123',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 0,
                             'calculated' => 0,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 8,
                             'calculated' => 8,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 1,
                             'calculated' => 1,
                             'isValid'    => true,
@@ -227,17 +228,17 @@ final class DocumentTest extends TestCase
                     'sex'                        => 'M',
                     'dateOfExpiry'               => '190915',
                     'checkDigits'                => [
-                        'documentNumber' => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
                             'extracted'  => 7,
                             'calculated' => 7,
                             'isValid'    => true,
                         ],
-                        'dateOfBirth' => [
+                        CheckDigitType::DATE_OF_BIRTH => [
                             'extracted'  => 4,
                             'calculated' => 4,
                             'isValid'    => true,
                         ],
-                        'dateOfExpiry' => [
+                        CheckDigitType::DATE_OF_EXPIRY => [
                             'extracted'  => 5,
                             'calculated' => 5,
                             'isValid'    => true,
