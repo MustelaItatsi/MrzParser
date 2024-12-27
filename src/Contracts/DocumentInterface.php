@@ -52,16 +52,26 @@ interface DocumentInterface
     public function getNationality(): string;
 
     /**
-     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
+     * in 'ymd' format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfBirth(): string;
+
+    /**
+     * in 'Y-m-d' format.
+     */
+    public function getDateOfBirthWithEstimatedEpoch(): ?string;
 
     public function getSex(): ?string;
 
     /**
-     * in YYMMDD format (per ICAO Doc 9303 Part 3 Section 4.8).
+     * in 'ymd' format (per ICAO Doc 9303 Part 3 Section 4.8).
      */
     public function getDateOfExpiry(): string;
+
+    /**
+     * in 'Y-m-d' format.
+     */
+    public function getDateOfExpiryWithEstimatedEpoch(): ?string;
 
     /**
      * Get the check digits for the document fields.

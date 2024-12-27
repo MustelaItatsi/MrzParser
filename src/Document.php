@@ -9,6 +9,8 @@
  */
 namespace MustelaItatsi\MrzParser;
 
+use DateInterval;
+use DateTime;
 use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
 use MustelaItatsi\MrzParser\Contracts\ParserInterface;
 use MustelaItatsi\MrzParser\Enums\MrzType;
@@ -154,6 +156,23 @@ class Document implements DocumentInterface
         return $this;
     }
 
+    public function getDateOfBirthWithEstimatedEpoch(): ?string
+    {
+        $dateTime = DateTime::createFromFormat('ymd', $this->getDateOfBirth());
+
+        if ($dateTime === false) {
+            return null;
+        }
+
+        $dateTime->setTime(0, 0, 0);
+
+        if ($dateTime > new DateTime('today')) {
+            $dateTime->sub(new DateInterval('P100Y'));
+        }
+
+        return $dateTime->format('Y-m-d');
+    }
+
     public function getSex(): ?string
     {
         return $this->sex;
@@ -176,6 +195,23 @@ class Document implements DocumentInterface
         $this->dateOfExpiry = $dateOfExpiry;
 
         return $this;
+    }
+
+    public function getDateOfExpiryWithEstimatedEpoch(): ?string
+    {
+        $dateTime = DateTime::createFromFormat('ymd', $this->getDateOfExpiry());
+
+        if ($dateTime === false) {
+            return null;
+        }
+
+        $dateTime->setTime(0, 0, 0);
+
+        if ($dateTime <= new DateTime('today -20 years')) {
+            $dateTime->add(new DateInterval('P100Y'));
+        }
+
+        return $dateTime->format('Y-m-d');
     }
 
     /**

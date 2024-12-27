@@ -27,17 +27,20 @@ require 'vendor/autoload.php';
 $mrz = 'I<UTOD231458907<<<<<<<<<<<<<<<7408122F1204159UTO<<<<<<<<<<<6ERIKSSON<<ANNA<MARIA<<<<<<<<<<';
 $document = MustelaItatsi\MrzParser\Facades\ParserFacade::parseMrz($mrz);
 
-$document->getMrzType()                    => MustelaItatsi\MrzParser\Enums\MrzType::TD1,
-$document->getDocumentCode()               => 'I',
-$document->getIssuingStateOrOrganization() => 'UTO',
-$document->getPrimaryIdentifier()          => 'ERIKSSON',
-$document->getSecondaryIdentifier()        => 'ANNA MARIA',
-$document->getDocumentNumber()             => 'D23145890',
-$document->getNationality()                => 'UTO',
-$document->getDateOfBirth()                => '740812',
-$document->getSex()                        => 'F',
-$document->getDateOfExpiry()               => '120415',
-$document->getCheckDigits()                => [
+$document->getMrzType()                        => MustelaItatsi\MrzParser\Enums\MrzType::TD1,
+$document->getDocumentCode()                   => 'I',
+$document->getIssuingStateOrOrganization()     => 'UTO',
+$document->getPrimaryIdentifier()              => 'ERIKSSON',
+$document->getSecondaryIdentifier()            => 'ANNA MARIA',
+$document->getDocumentNumber()                 => 'D23145890',
+$document->getNationality()                    => 'UTO',
+$document->getDateOfBirth()                    => '740812',
+$document->getDateOfBirthWithEstimatedEpoch()  => '1974-08-12',
+$document->getSex()                            => 'F',
+$document->getDateOfExpiry()                   => '120415',
+$document->getDateOfExpiryWithEstimatedEpoch() => '2012-04-15',
+
+$document->getCheckDigits() => [
     'documentNumber' => [
         'value'      => 7,
         'calculated' => 7,

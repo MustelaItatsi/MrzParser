@@ -17,7 +17,7 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class DocumentTest extends TestCase
+final class DocumentTest extends TestCase
 {
     /**
      * @SuppressWarnings(PHPMD)
