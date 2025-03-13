@@ -11,6 +11,7 @@ namespace MustelaItatsi\MrzParser\Parsers;
 
 use function explode;
 use function str_replace;
+use function str_starts_with;
 use function strlen;
 use function substr;
 use function trim;
@@ -54,7 +55,8 @@ abstract class AbstractParser
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
-            $value = self::normalizeField($value);
+            $isDate = str_starts_with($key, 'date');
+            $value  = self::normalizeField($value, $isDate);
         }
 
         $document = (new Document)
@@ -93,8 +95,11 @@ abstract class AbstractParser
         return str_replace(["\n", ' '], '', $mrz);
     }
 
-    private static function normalizeField(string $value): ?string
+    private static function normalizeField(string $value, bool $isDate): ?string
     {
+        if ($isDate) {
+            $value = str_replace('<', 'X', $value);
+        }
         $value = trim($value, '<');
         $value = str_replace('<', ' ', $value);
 

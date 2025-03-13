@@ -42,6 +42,22 @@ final class DocumentDateOfBirthEpochEstimationTest extends TestCase
                 $tomorrow->format('ymd'),
                 $tomorrow->sub(new DateInterval('P100Y'))->format('Y-m-d'),
             ],
+            'unknown date of birth' => [
+                'XXXXXX',
+                'XXXX-XX-XX',
+            ],
+            'Partially unknown date of birth current year' => [
+                $now->format('y') . 'XXXX',
+                $now->format('Y') . '-XX-XX',
+            ],
+            'Partially unknown date of birth current year +1' => [
+                $now->modify('+1 year')->format('y') . 'XXXX',
+                $now->modify('-99 year')->format('Y') . '-XX-XX',
+            ],
+            'Partially unknown date of birth current year only day missing' => [
+                $now->format('ym') . 'XX',
+                $now->format('Y-m') . '-XX',
+            ],
             'invalid date format' => [
                 'invalid',
                 null,
