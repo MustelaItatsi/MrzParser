@@ -9,6 +9,11 @@
  */
 namespace MustelaItatsi\MrzParser;
 
+use function ctype_digit;
+use function date;
+use function implode;
+use function str_ends_with;
+use function substr;
 use DateInterval;
 use DateTime;
 use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
@@ -158,6 +163,34 @@ class Document implements DocumentInterface
 
     public function getDateOfBirthWithEstimatedEpoch(): ?string
     {
+        if (str_ends_with($this->getDateOfBirth(), 'X')) {
+            $date = [
+                'y' => substr($this->getDateOfBirth(), 0, 2),
+                'm' => substr($this->getDateOfBirth(), 2, 2),
+                'd' => 'XX',
+            ];
+
+            if (!ctype_digit($date['y'])) {
+                return 'XXXX-XX-XX';
+            }
+            $currentYear    = date('Y');
+            $currentCentury = substr($currentYear, 0, 2);
+
+            /**
+             * @var numeric-string
+             *
+             * @phpstan-ignore varTag.nativeType
+             */
+            $fullYear = $currentCentury . $date['y'];
+
+            // If the estimated year is in the future, assume the previous century
+            if ($fullYear > $currentYear) {
+                $fullYear = $fullYear - 100;
+            }
+            $date['y'] = $fullYear;
+
+            return implode('-', $date);
+        }
         $dateTime = DateTime::createFromFormat('ymd', $this->getDateOfBirth());
 
         if ($dateTime === false) {

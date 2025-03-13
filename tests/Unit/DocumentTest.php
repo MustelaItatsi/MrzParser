@@ -246,6 +246,22 @@ final class DocumentTest extends TestCase
                     ],
                 ],
             ],
+            'Unknown Date of Birth' => [
+                "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
+                "<<<<<<6<3108011D<<2108<<<<<<<5\n" .
+                'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
+                [
+                    'dateOfBirth' => 'XXXXXX',
+                ],
+            ],
+            'Partially Unknown Date of Birth' => [
+                "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
+                "83<<<<6<3108011D<<2108<<<<<<<5\n" .
+                'MUSTERMANN<<ERIKA<<<<<<<<<<<<<',
+                [
+                    'dateOfBirth' => '83XXXX',
+                ],
+            ],
         ];
     }
 

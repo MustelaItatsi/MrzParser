@@ -54,11 +54,13 @@ interface DocumentInterface
 
     /**
      * in 'ymd' format (per ICAO Doc 9303 Part 3 Section 4.8).
+     * unknown parts are replaced with 'X' (per ICAO Doc 9303 Part 3 Section 3.8).
      */
     public function getDateOfBirth(): string;
 
     /**
      * in 'Y-m-d' format.
+     * unknown parts are replaced with 'X' (per ICAO Doc 9303 Part 3 Section 3.8).
      */
     public function getDateOfBirthWithEstimatedEpoch(): ?string;
 
