@@ -41,7 +41,7 @@ interface DocumentInterface
     /**
      * e.g., given names. Names may be cropped.
      */
-    public function getSecondaryIdentifier(): string;
+    public function getSecondaryIdentifier(): ?string;
 
     public function getDocumentNumber(): string;
 
