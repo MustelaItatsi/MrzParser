@@ -44,7 +44,7 @@ class Document implements DocumentInterface
     private string $documentCode;
     private string $issuingStateOrOrganization;
     private string $primaryIdentifier;
-    private string $secondaryIdentifier;
+    private ?string $secondaryIdentifier;
     private string $documentNumber;
     private string $nationality;
     private string $dateOfBirth;
@@ -113,12 +113,12 @@ class Document implements DocumentInterface
         return $this;
     }
 
-    public function getSecondaryIdentifier(): string
+    public function getSecondaryIdentifier(): ?string
     {
         return $this->secondaryIdentifier;
     }
 
-    public function setSecondaryIdentifier(string $secondaryIdentifier): self
+    public function setSecondaryIdentifier(?string $secondaryIdentifier): self
     {
         $this->secondaryIdentifier = $secondaryIdentifier;
 

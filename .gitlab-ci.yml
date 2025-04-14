@@ -99,7 +99,7 @@ test:php-cs-fixer:
   stage: test
   cache: *composer-cache
   dependencies: []
-  image: sineverba/php8xc:latest
+  image: sineverba/php8xc:1.18.0
   before_script:
     - composer install
   script:
