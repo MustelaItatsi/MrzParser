@@ -262,12 +262,12 @@ final class DocumentTest extends TestCase
                     'dateOfBirth' => '83XXXX',
                 ],
             ],
-            'Unknown Firstname' => [
+            'Long Lastname' => [
                 "IDD<<L01XPVM8J2<<<<<<<<<<<<<<<\n" .
                 "<<<<<<6<3108011D<<2108<<<<<<<5\n" .
-                'MUSTERMANN<<<<<<<<<<<<<<<<<<<<',
+                'MUSTERMANNNNNNNNNNNNNNNNNNNNNN',
                 [
-                    'primaryIdentifier'   => 'MUSTERMANN',
+                    'primaryIdentifier'   => 'MUSTERMANNNNNNNNNNNNNNNNNNNNNN',
                     'secondaryIdentifier' => null,
                 ],
             ],
