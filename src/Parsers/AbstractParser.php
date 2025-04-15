@@ -51,7 +51,9 @@ abstract class AbstractParser
         foreach (static::FIELD_POS as $key => $value) {
             $result[$key] = substr($mrz, ...$value);
         }
-        [$result['primaryIdentifier'], $result['secondaryIdentifier']] = explode('<<', $result['fullName']);
+        $splitName                     = explode('<<', $result['fullName']);
+        $result['primaryIdentifier']   = $splitName[0];
+        $result['secondaryIdentifier'] = $splitName[1] ?? null;
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
@@ -95,8 +97,12 @@ abstract class AbstractParser
         return str_replace(["\n", ' '], '', $mrz);
     }
 
-    private static function normalizeField(string $value, bool $isDate): ?string
+    private static function normalizeField(?string $value, bool $isDate): ?string
     {
+        if ($value === null) {
+            return null;
+        }
+
         if ($isDate) {
             $value = str_replace('<', 'X', $value);
         }
