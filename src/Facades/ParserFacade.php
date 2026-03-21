@@ -14,17 +14,8 @@ use MustelaItatsi\MrzParser\Document;
 
 class ParserFacade
 {
-    /**
-     * Parse an MRZ string and return Document instance if valid.
-     */
     public static function parseMrz(string $mrz): ?DocumentInterface
     {
-        $document = Document::fromMrz($mrz);
-
-        if ($document === null) {
-            return null;
-        }
-
-        return $document;
+        return Document::fromMrz($mrz);
     }
 }
