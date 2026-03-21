@@ -35,4 +35,9 @@ enum MrzType
      *  MRVs Format-B.
      */
     case VB;
+
+    /**
+     * French national ID card (CNI), non-standard TD2 format.
+     */
+    case CNI;
 }

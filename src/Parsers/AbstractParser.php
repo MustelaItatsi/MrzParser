@@ -9,6 +9,7 @@
  */
 namespace MustelaItatsi\MrzParser\Parsers;
 
+use function array_key_exists;
 use function explode;
 use function str_replace;
 use function str_starts_with;
@@ -51,9 +52,12 @@ abstract class AbstractParser
         foreach (static::FIELD_POS as $key => $value) {
             $result[$key] = substr($mrz, ...$value);
         }
-        $splitName                     = explode('<<', $result['fullName']);
-        $result['primaryIdentifier']   = $splitName[0];
-        $result['secondaryIdentifier'] = $splitName[1] ?? null;
+        $splitName                   = explode('<<', $result['fullName']);
+        $result['primaryIdentifier'] = $splitName[0];
+
+        if (!array_key_exists('secondaryIdentifier', static::FIELD_POS)) {
+            $result['secondaryIdentifier'] = $splitName[1] ?? null;
+        }
         unset($result['fullName']);
 
         foreach ($result as $key => &$value) {
@@ -68,10 +72,10 @@ abstract class AbstractParser
             ->setPrimaryIdentifier($result['primaryIdentifier'])
             ->setSecondaryIdentifier($result['secondaryIdentifier'])
             ->setDocumentNumber($result['documentNumber'])
-            ->setNationality($result['nationality'])
+            ->setNationality(static::resolveNationality($result))
             ->setDateOfBirth($result['dateOfBirth'])
             ->setSex($result['sex'])
-            ->setDateOfExpiry($result['dateOfExpiry']);
+            ->setDateOfExpiry(static::resolveDateOfExpiry($result));
         $checkDigitArray = [];
 
         foreach (static::$checkDigits as $key => $checkDigitConfig) {
@@ -85,6 +89,18 @@ abstract class AbstractParser
         $document->setCheckDigits($checkDigitArray);
 
         return $document;
+    }
+
+    /** @param array<string,null|string> $result */
+    protected static function resolveNationality(array $result): string
+    {
+        return $result['nationality'];
+    }
+
+    /** @param array<string,null|string> $result */
+    protected static function resolveDateOfExpiry(array $result): string
+    {
+        return $result['dateOfExpiry'];
     }
 
     private static function getMrzType(): MrzType
