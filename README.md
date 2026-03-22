@@ -64,6 +64,12 @@ $document->getCheckDigits() => [
 ]
 ```
 
+## API Stability
+
+Only `ParserFacade::parseMrz()` and `DocumentInterface` are stable public contracts. Downstream
+consumers should depend only on these two. All other classes, enum cases, and interfaces are
+internal implementation details and may change in any release without notice.
+
 ## Testing
 
 ```bash

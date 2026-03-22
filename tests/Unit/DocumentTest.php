@@ -26,11 +26,11 @@ final class DocumentTest extends TestCase
     public static function parseDataProvider(): array
     {
         return [
-            'FRA-BO-02002 with CNI' => [
+            'FRA-BO-02002 with FRA_ID' => [
                 "IDFRABERTHIER<<<<<<<<<<<<<<<<<<<<<<<\n" .
                 '9409923102854CORINNE<<<<<<<6512068F4',
                 [
-                    'mrzType'                    => MrzType::CNI,
+                    'mrzType'                    => MrzType::FRA_ID,
                     'documentCode'               => 'ID',
                     'issuingStateOrOrganization' => 'FRA',
                     'primaryIdentifier'          => 'BERTHIER',
@@ -59,11 +59,11 @@ final class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'FRA-CNI issueYear=14 (+15yr boundary)' => [
+            'FRA-FRA_ID issueYear=14 (+15yr boundary)' => [
                 "IDFRAMOREAU<<<<<<<<<<<<<<<<<<<<<<<<< \n" .
                 '1406002345678ALICE<<<<<<<<<9201154F2',
                 [
-                    'mrzType'                    => MrzType::CNI,
+                    'mrzType'                    => MrzType::FRA_ID,
                     'documentCode'               => 'ID',
                     'issuingStateOrOrganization' => 'FRA',
                     'primaryIdentifier'          => 'MOREAU',
@@ -92,11 +92,11 @@ final class DocumentTest extends TestCase
                     ],
                 ],
             ],
-            'FRA-CNI issueYear=50 (+15yr boundary)' => [
+            'FRA-FRA_ID issueYear=50 (+15yr boundary)' => [
                 "IDFRASIMON<<<<<<<<<<<<<<<<<<<<<<<<<<\n" .
                 '5008003456780PAUL<<<<<<<<<<7503201M6',
                 [
-                    'mrzType'        => MrzType::CNI,
+                    'mrzType'        => MrzType::FRA_ID,
                     'documentNumber' => '500800345678',
                     'nationality'    => 'FRA',
                     'dateOfExpiry'   => '650801',

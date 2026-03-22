@@ -37,7 +37,8 @@ enum MrzType
     case VB;
 
     /**
-     * French national ID card (CNI), non-standard TD2 format.
+     * French national ID card (Carte Nationale d'Identite), non-standard TD2 format.
+     * Country-specific type — pattern: {ISO3}_{DOC}.
      */
-    case CNI;
+    case FRA_ID;
 }

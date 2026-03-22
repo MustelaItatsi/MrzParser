@@ -16,11 +16,11 @@ use MustelaItatsi\MrzParser\Contracts\ParserInterface;
 use MustelaItatsi\MrzParser\Enums\CheckDigitType;
 use MustelaItatsi\MrzParser\Enums\MrzType;
 
-class FrenchIdCardTd2 extends AbstractParser implements ParserInterface
+class FrenchIdCard extends AbstractParser implements ParserInterface
 {
     protected const LINELENGTH = 36;
     protected const LINECOUNT  = 2;
-    protected const MRZTYPE    = MrzType::CNI;
+    protected const MRZTYPE    = MrzType::FRA_ID;
 
     /** @var array<string,array{offset:int,length:int}> */
     protected const FIELD_POS = [
