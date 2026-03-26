@@ -364,6 +364,115 @@ final class DocumentTest extends TestCase
                     'secondaryIdentifier' => null,
                 ],
             ],
+            'BEL-BO-03003' => [
+                "IDBEL000590240<6013<<<<<<<<<<<\n" .
+                "8512017F1311048BEL851201002007\n" .
+                'REINARTZ<<ULRIKE<KATIA<E<<<<<<',
+                [
+                    'mrzType'                    => MrzType::BEL_ID,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'BEL',
+                    'primaryIdentifier'          => 'REINARTZ',
+                    'secondaryIdentifier'        => 'ULRIKE KATIA E',
+                    'nationality'                => 'BEL',
+                    'documentNumber'             => '000590240601',
+                    'dateOfBirth'                => '851201',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '131104',
+                    'checkDigits'                => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 3,
+                            'calculated' => 3,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 7,
+                            'calculated' => 7,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_EXPIRY => [
+                            'extracted'  => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 7,
+                            'calculated' => 7,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
+            'BEL synthetic: leading < in base doc number + 14-char continuation' => [
+                "IDBEL<12345678<012345678901242\n" .
+                "8001014F3012316BEL<<<<<<<<<<<0\n" .
+                'SPECIMEN<<SPECIMEN<<<<<<<<<<<<',
+                [
+                    'mrzType'        => MrzType::BEL_ID,
+                    'documentNumber' => '1234567801234567890124',
+                    'checkDigits'    => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 2,
+                            'calculated' => 2,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_EXPIRY => [
+                            'extracted'  => 6,
+                            'calculated' => 6,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 0,
+                            'calculated' => 0,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
+            'BEL-BO-11005' => [
+                "IDBEL600001795<0152<<<<<<<<<<<\n" .
+                "1301014F2311207BEL130101987398\n" .
+                'SPECIMEN<<SPECIMEN<<<<<<<<<<<<',
+                [
+                    'mrzType'                    => MrzType::BEL_ID,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'BEL',
+                    'primaryIdentifier'          => 'SPECIMEN',
+                    'secondaryIdentifier'        => 'SPECIMEN',
+                    'nationality'                => 'BEL',
+                    'documentNumber'             => '600001795015',
+                    'dateOfBirth'                => '130101',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '231120',
+                    'checkDigits'                => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 2,
+                            'calculated' => 2,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_EXPIRY => [
+                            'extracted'  => 7,
+                            'calculated' => 7,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

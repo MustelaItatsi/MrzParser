@@ -31,6 +31,20 @@ class CheckDigit
         'Z' => 35,
     ];
 
+    public static function calcCheckDigit(string $input): int
+    {
+        $weights = [7, 3, 1];
+        $sum     = 0;
+
+        foreach (str_split($input) as $index => $char) {
+            $value  = self::$characterValues[$char];
+            $weight = $weights[$index % count($weights)];
+            $sum += $value * $weight;
+        }
+
+        return $sum % 10;
+    }
+
     /**
      * @param MrzRange[] $ranges
      */
@@ -64,19 +78,5 @@ class CheckDigit
         }
 
         return $result;
-    }
-
-    private static function calcCheckDigit(string $input): int
-    {
-        $weights = [7, 3, 1];
-        $sum     = 0;
-
-        foreach (str_split($input) as $index => $char) {
-            $value  = self::$characterValues[$char];
-            $weight = $weights[$index % count($weights)];
-            $sum += $value * $weight;
-        }
-
-        return $sum % 10;
     }
 }
