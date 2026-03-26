@@ -19,6 +19,7 @@ use DateTime;
 use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
 use MustelaItatsi\MrzParser\Contracts\ParserInterface;
 use MustelaItatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\Parsers\BelgianIdCard;
 use MustelaItatsi\MrzParser\Parsers\FrenchIdCard;
 use MustelaItatsi\MrzParser\Parsers\TravelDocumentType1;
 use MustelaItatsi\MrzParser\Parsers\TravelDocumentType2;
@@ -38,6 +39,7 @@ class Document implements DocumentInterface
         VisaTypeA::class,
         VisaTypeB::class,
         FrenchIdCard::class,
+        BelgianIdCard::class,
         TravelDocumentType1::class,
         TravelDocumentType2::class,
         TravelDocumentType3::class,

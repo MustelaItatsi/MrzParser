@@ -41,4 +41,9 @@ enum MrzType
      * Country-specific type — pattern: {ISO3}_{DOC}.
      */
     case FRA_ID;
+
+    /**
+     * Belgian national identity card, non-standard TD1 format with extended document number.
+     */
+    case BEL_ID;
 }

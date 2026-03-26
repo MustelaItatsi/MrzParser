@@ -103,14 +103,14 @@ abstract class AbstractParser
         return $result['dateOfExpiry'];
     }
 
+    protected static function normalizeMrz(string $mrz): string
+    {
+        return str_replace(["\n", ' '], '', $mrz);
+    }
+
     private static function getMrzType(): MrzType
     {
         return static::MRZTYPE;
-    }
-
-    private static function normalizeMrz(string $mrz): string
-    {
-        return str_replace(["\n", ' '], '', $mrz);
     }
 
     private static function normalizeField(?string $value, bool $isDate): ?string
