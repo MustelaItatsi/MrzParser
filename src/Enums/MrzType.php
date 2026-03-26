@@ -35,4 +35,10 @@ enum MrzType
      *  MRVs Format-B.
      */
     case VB;
+
+    /**
+     * French national ID card (Carte Nationale d'Identite), non-standard TD2 format.
+     * Country-specific type — pattern: {ISO3}_{DOC}.
+     */
+    case FRA_ID;
 }

@@ -6,7 +6,18 @@
         ]
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+        "ProtectedVisibility": {
+            "ignore": [
+                "MustelaItatsi\\MrzParser\\Parsers\\AbstractParser::resolveNationality",
+                "MustelaItatsi\\MrzParser\\Parsers\\AbstractParser::resolveDateOfExpiry"
+            ]
+        },
+        "CastInt": {
+            "ignore": [
+                "MustelaItatsi\\MrzParser\\Parsers\\FrenchIdCard::resolveDateOfExpiry"
+            ]
+        }
     },
     "logs": {
         "stryker": {

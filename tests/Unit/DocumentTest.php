@@ -26,6 +26,99 @@ final class DocumentTest extends TestCase
     public static function parseDataProvider(): array
     {
         return [
+            'FRA-BO-02002 with FRA_ID' => [
+                "IDFRABERTHIER<<<<<<<<<<<<<<<<<<<<<<<\n" .
+                '9409923102854CORINNE<<<<<<<6512068F4',
+                [
+                    'mrzType'                    => MrzType::FRA_ID,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'BERTHIER',
+                    'secondaryIdentifier'        => 'CORINNE',
+                    'nationality'                => 'FRA',
+                    'documentNumber'             => '940992310285',
+                    'dateOfBirth'                => '651206',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '040901',
+                    'checkDigits'                => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
+            'FRA-FRA_ID issueYear=14 (+15yr boundary)' => [
+                "IDFRAMOREAU<<<<<<<<<<<<<<<<<<<<<<<<< \n" .
+                '1406002345678ALICE<<<<<<<<<9201154F2',
+                [
+                    'mrzType'                    => MrzType::FRA_ID,
+                    'documentCode'               => 'ID',
+                    'issuingStateOrOrganization' => 'FRA',
+                    'primaryIdentifier'          => 'MOREAU',
+                    'secondaryIdentifier'        => 'ALICE',
+                    'documentNumber'             => '140600234567',
+                    'nationality'                => 'FRA',
+                    'dateOfBirth'                => '920115',
+                    'sex'                        => 'F',
+                    'dateOfExpiry'               => '290601',
+                    'checkDigits'                => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 8,
+                            'calculated' => 8,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 4,
+                            'calculated' => 4,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 2,
+                            'calculated' => 2,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
+            'FRA-FRA_ID issueYear=50 (+15yr boundary)' => [
+                "IDFRASIMON<<<<<<<<<<<<<<<<<<<<<<<<<<\n" .
+                '5008003456780PAUL<<<<<<<<<<7503201M6',
+                [
+                    'mrzType'        => MrzType::FRA_ID,
+                    'documentNumber' => '500800345678',
+                    'nationality'    => 'FRA',
+                    'dateOfExpiry'   => '650801',
+                    'checkDigits'    => [
+                        CheckDigitType::DOCUMENT_NUMBER => [
+                            'extracted'  => 0,
+                            'calculated' => 0,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::DATE_OF_BIRTH => [
+                            'extracted'  => 1,
+                            'calculated' => 1,
+                            'isValid'    => true,
+                        ],
+                        CheckDigitType::OVERALL => [
+                            'extracted'  => 6,
+                            'calculated' => 6,
+                            'isValid'    => true,
+                        ],
+                    ],
+                ],
+            ],
             'FRA-BO-03001 with TD1' => [
                 "IDFRAX4RTBPFW46<<<<<<<<<<<<<<<\n" .
                 "9007138F3002119FRA<<<<<<<<<<<6\n" .

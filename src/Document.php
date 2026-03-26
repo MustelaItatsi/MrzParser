@@ -19,6 +19,7 @@ use DateTime;
 use MustelaItatsi\MrzParser\Contracts\DocumentInterface;
 use MustelaItatsi\MrzParser\Contracts\ParserInterface;
 use MustelaItatsi\MrzParser\Enums\MrzType;
+use MustelaItatsi\MrzParser\Parsers\FrenchIdCard;
 use MustelaItatsi\MrzParser\Parsers\TravelDocumentType1;
 use MustelaItatsi\MrzParser\Parsers\TravelDocumentType2;
 use MustelaItatsi\MrzParser\Parsers\TravelDocumentType3;
@@ -36,6 +37,7 @@ class Document implements DocumentInterface
     private static array $parser = [
         VisaTypeA::class,
         VisaTypeB::class,
+        FrenchIdCard::class,
         TravelDocumentType1::class,
         TravelDocumentType2::class,
         TravelDocumentType3::class,
