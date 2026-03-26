@@ -1,10 +1,11 @@
 # MrzParser
 
 [![Pipeline Status](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/pipeline.svg)](https://gitlab.com/MustelaItatsi/MrzParser/-/commits/main)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mustelaitatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/mustelaitatsi/mrzparser)
-[![Total Downloads](https://img.shields.io/packagist/dt/mustelaitatsi/mrzparser.svg?style=flat-square)](https://packagist.org/packages/mustelaitatsi/mrzparser)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mustelaitatsi/mrzparser.svg)](https://packagist.org/packages/mustelaitatsi/mrzparser)
+[![Total Downloads](https://img.shields.io/packagist/dt/mustelaitatsi/mrzparser.svg)](https://packagist.org/packages/mustelaitatsi/mrzparser)
 [![Coverage](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/coverage.svg)](https://gitlab.com/MustelaItatsi/MrzParser/badges/main/coverage.svg)
-[![Mutation testing badge](https://img.shields.io/endpoint?logo=null&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FMustelaItatsi%2FMrzParser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/MustelaItatsi/MrzParser/main)
+[![Mutation testing badge](https://img.shields.io/badge/mutation%20score-100%25-brightgreen)](https://gitlab.com/MustelaItatsi/MrzParser)
+[![License](https://img.shields.io/packagist/l/mustelaitatsi/mrzparser.svg)](https://gitlab.com/MustelaItatsi/MrzParser/-/blob/main/LICENSE)
 
 A PHP package for MRZ parsing.
 
